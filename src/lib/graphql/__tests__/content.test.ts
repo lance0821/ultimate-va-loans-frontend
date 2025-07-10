@@ -16,7 +16,7 @@ describe('getContentPage', () => {
 
   beforeEach(() => {
     vi.clearAllMocks()
-    vi.mocked(getServerApolloClient).mockResolvedValue(mockClient as ReturnType<typeof getServerApolloClient> extends Promise<infer T> ? T : never)
+    vi.mocked(getServerApolloClient).mockResolvedValue(mockClient as unknown as ReturnType<typeof getServerApolloClient> extends Promise<infer T> ? T : never)
   })
 
   it('should fetch and parse content page successfully', async () => {
