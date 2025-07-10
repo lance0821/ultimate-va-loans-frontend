@@ -4,6 +4,7 @@ import { BenefitsGrid } from '@/components/home/BenefitsGrid'
 import { StatisticsSection } from '@/components/home/StatisticsSection'
 import { AffordabilityPreview } from '@/components/home/AffordabilityPreview'
 import { LoanComparison } from '@/components/home/LoanComparison'
+import { EducationalResources } from '@/components/home/EducationalResources'
 import { ReviewsSection } from '@/components/reviews/ReviewsSection'
 
 export default function HomePage() {
@@ -25,6 +26,9 @@ export default function HomePage() {
       
       {/* VA Loan Comparison Section */}
       <LoanComparison />
+      
+      {/* Educational Resources Section */}
+      <EducationalResources />
       
       {/* Reviews Section */}
       <ReviewsSection />
