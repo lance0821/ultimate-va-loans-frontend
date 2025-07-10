@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VA Home Loans Frontend
 
-## Getting Started
+Next.js 14+ application with App Router, TypeScript, Tailwind CSS v4, and shadcn/ui for the VA Home Loans website.
 
-First, run the development server:
+## Prerequisites
 
+- Bun runtime (latest version)
+- Node.js 18+ (for compatibility)
+
+## Setup Instructions
+
+1. Clone the repository and navigate to the frontend directory:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd frontend
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+bun install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Copy the environment variables:
+```bash
+cp .env.local.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Update the `.env.local` file with your actual values:
+- Supabase URL and anon key
+- GraphQL endpoint (default: http://localhost:8000/graphql)
+- Google Analytics measurement ID (optional)
+- Company information
 
-## Learn More
+## Development
 
-To learn more about Next.js, take a look at the following resources:
+Start the development server:
+```bash
+bun run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application will be available at http://localhost:3000
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Available Scripts
 
-## Deploy on Vercel
+- `bun run dev` - Start development server
+- `bun run build` - Build for production
+- `bun run start` - Start production server
+- `bun run lint` - Run ESLint
+- `bun run type-check` - Check TypeScript types
+- `bun run format` - Format code with Prettier
+- `bun run format:check` - Check code formatting
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Type safety
+- **Tailwind CSS v4** - Utility-first CSS with CSS-first configuration
+- **shadcn/ui** - Component library
+- **Bun** - JavaScript runtime and package manager
+
+## Project Structure
+
+```
+frontend/
+├── src/
+│   ├── app/           # Next.js app router pages
+│   ├── components/    # React components
+│   │   └── ui/       # shadcn/ui components
+│   ├── lib/          # Utility functions
+│   └── types/        # TypeScript type definitions
+├── public/           # Static assets
+└── ...config files
+```
+
+## Tailwind CSS v4 Notes
+
+This project uses Tailwind CSS v4 with a CSS-first configuration approach:
+
+- Configuration is done in `globals.css` using `@theme inline`
+- No `tailwind.config.js` file is needed
+- Custom colors are defined as CSS variables with oklch format
+- VA brand colors: `bg-va-blue`, `text-va-gold`, `border-va-red`
+
+## Environment Variables
+
+See `.env.local.example` for required environment variables.
+
+## License
+
+Private - All rights reserved
