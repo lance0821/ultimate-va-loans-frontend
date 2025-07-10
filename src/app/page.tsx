@@ -1,5 +1,8 @@
 import { HeroSection } from '@/components/layout/hero/HeroSection'
+import { TrustBar } from '@/components/home/TrustBar'
 import { BenefitsGrid } from '@/components/home/BenefitsGrid'
+import { StatisticsSection } from '@/components/home/StatisticsSection'
+import { AffordabilityPreview } from '@/components/home/AffordabilityPreview'
 import { ReviewsSection } from '@/components/reviews/ReviewsSection'
 
 export default function HomePage() {
@@ -7,8 +10,17 @@ export default function HomePage() {
     <main className="min-h-screen">
       <HeroSection />
       
+      {/* Trust Indicators Bar */}
+      <TrustBar />
+      
       {/* Benefits Grid Section */}
       <BenefitsGrid />
+      
+      {/* Statistics Section */}
+      <StatisticsSection />
+      
+      {/* Affordability Calculator Preview */}
+      <AffordabilityPreview />
       
       {/* Reviews Section */}
       <ReviewsSection />

@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAffordabilityCalculator } from '@/hooks/use-affordability-calculator'
+import { getCalculatorState } from '@/lib/calculators/calculator-state'
 import { IncomeInputs } from './IncomeInputs'
 import { DebtInputs } from './DebtInputs'
 import { AffordabilityResults } from './AffordabilityResults'
@@ -19,6 +20,28 @@ import { LOAN_TERMS, INPUT_RANGES } from '@/lib/calculators/constants'
 export function AffordabilityCalculator() {
   const { inputs, results, updateInput, resetCalculator } = useAffordabilityCalculator()
   const [showBAHLookup, setShowBAHLookup] = useState(false)
+  
+  // Check for transferred state from homepage preview
+  useEffect(() => {
+    const transferState = getCalculatorState()
+    if (transferState && transferState.source === 'homepage-preview') {
+      // Update calculator inputs with transferred values
+      if (transferState.annualIncome) {
+        updateInput('annualIncome', transferState.annualIncome)
+      }
+      if (transferState.monthlyDebts !== undefined) {
+        // Distribute debts across categories
+        const totalDebts = transferState.monthlyDebts
+        updateInput('carPayment', Math.round(totalDebts * 0.4))
+        updateInput('creditCardPayment', Math.round(totalDebts * 0.3))
+        updateInput('studentLoanPayment', Math.round(totalDebts * 0.2))
+        updateInput('otherDebtPayment', Math.round(totalDebts * 0.1))
+      }
+      if (transferState.downPayment !== undefined) {
+        updateInput('downPaymentAmount', transferState.downPayment)
+      }
+    }
+  }, [updateInput])
   
   const handleBAHSelect = (bahAmount: number) => {
     updateInput('monthlyBAH', bahAmount)
