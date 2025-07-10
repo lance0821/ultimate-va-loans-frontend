@@ -1,6 +1,7 @@
 import { HeroSection } from '@/components/layout/hero/HeroSection'
 import { TrustBar } from '@/components/home/TrustBar'
 import { BenefitsGrid } from '@/components/home/BenefitsGrid'
+import { StatisticsSection } from '@/components/home/StatisticsSection'
 import { ReviewsSection } from '@/components/reviews/ReviewsSection'
 
 export default function HomePage() {
@@ -13,6 +14,9 @@ export default function HomePage() {
       
       {/* Benefits Grid Section */}
       <BenefitsGrid />
+      
+      {/* Statistics Section */}
+      <StatisticsSection />
       
       {/* Reviews Section */}
       <ReviewsSection />
