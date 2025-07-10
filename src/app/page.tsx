@@ -3,6 +3,7 @@ import { TrustBar } from '@/components/home/TrustBar'
 import { BenefitsGrid } from '@/components/home/BenefitsGrid'
 import { StatisticsSection } from '@/components/home/StatisticsSection'
 import { AffordabilityPreview } from '@/components/home/AffordabilityPreview'
+import { LoanComparison } from '@/components/home/LoanComparison'
 import { ReviewsSection } from '@/components/reviews/ReviewsSection'
 
 export default function HomePage() {
@@ -21,6 +22,9 @@ export default function HomePage() {
       
       {/* Affordability Calculator Preview */}
       <AffordabilityPreview />
+      
+      {/* VA Loan Comparison Section */}
+      <LoanComparison />
       
       {/* Reviews Section */}
       <ReviewsSection />
