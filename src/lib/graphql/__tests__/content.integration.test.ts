@@ -49,7 +49,7 @@ describe('Content GraphQL Integration', () => {
       expect(body[0]).toHaveProperty('value')
     } catch (error) {
       // If backend is not running, skip the test
-      if (error.message.includes('fetch failed')) {
+      if (error instanceof Error && error.message.includes('fetch failed')) {
         console.log('Skipping integration test - backend not available')
         return
       }
@@ -67,7 +67,7 @@ describe('Content GraphQL Integration', () => {
       expect(data.contentPage).toBeNull()
     } catch (error) {
       // If backend is not running, skip the test
-      if (error.message.includes('fetch failed')) {
+      if (error instanceof Error && error.message.includes('fetch failed')) {
         console.log('Skipping integration test - backend not available')
         return
       }
@@ -86,21 +86,25 @@ describe('Content GraphQL Integration', () => {
         const body = JSON.parse(data.contentPage.body)
         
         // Find quote block to test special character handling
-        const quoteBlock = body.find(block => block.type === 'quote')
+        interface ContentBlock {
+          type: string
+          value: Record<string, unknown>
+        }
+        const quoteBlock = body.find((block: ContentBlock) => block.type === 'quote')
         if (quoteBlock) {
           expect(quoteBlock.value).toHaveProperty('text')
           expect(quoteBlock.value).toHaveProperty('attribution')
         }
         
         // Find calculator embed block
-        const calcBlock = body.find(block => block.type === 'calculator_embed')
+        const calcBlock = body.find((block: ContentBlock) => block.type === 'calculator_embed')
         if (calcBlock) {
           expect(calcBlock.value).toHaveProperty('calculator_type')
         }
       }
     } catch (error) {
       // If backend is not running, skip the test
-      if (error.message.includes('fetch failed')) {
+      if (error instanceof Error && error.message.includes('fetch failed')) {
         console.log('Skipping integration test - backend not available')
         return
       }

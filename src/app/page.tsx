@@ -1,10 +1,14 @@
 import { HeroSection } from '@/components/layout/hero/HeroSection'
+import { BenefitsGrid } from '@/components/home/BenefitsGrid'
 import { ReviewsSection } from '@/components/reviews/ReviewsSection'
 
 export default function HomePage() {
   return (
     <main className="min-h-screen">
       <HeroSection />
+      
+      {/* Benefits Grid Section */}
+      <BenefitsGrid />
       
       {/* Reviews Section */}
       <ReviewsSection />
