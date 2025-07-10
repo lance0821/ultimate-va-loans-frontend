@@ -1,14 +1,22 @@
-import { describe, it, expect } from 'vitest'
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { getContentPage } from '../queries/content'
+import { getServerApolloClient } from '../client'
+
+vi.mock('../client')
 
 describe('getContentPage', () => {
   const mockClient = {
     query: vi.fn(),
+    // Add minimal ApolloClient properties to satisfy type checking
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cache: {} as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    link: {} as any,
   }
 
   beforeEach(() => {
     vi.clearAllMocks()
-    vi.mocked(getServerApolloClient).mockResolvedValue(mockClient as any)
+    vi.mocked(getServerApolloClient).mockResolvedValue(mockClient as ReturnType<typeof getServerApolloClient> extends Promise<infer T> ? T : never)
   })
 
   it('should fetch and parse content page successfully', async () => {
