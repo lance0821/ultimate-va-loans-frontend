@@ -3,7 +3,6 @@
 import { useMortgageCalculator } from '@/hooks/use-mortgage-calculator'
 import { CalculatorForm } from './CalculatorForm'
 import { CalculatorResults } from './CalculatorResults'
-import { FundingFeeInfo } from './FundingFeeInfo'
 import { Button } from '@/components/ui/button'
 import { RotateCcw } from 'lucide-react'
 
@@ -30,19 +29,19 @@ export function MortgageCalculator() {
         </div>
         
         <CalculatorForm inputs={inputs} updateInput={updateInput} />
-        
-        <FundingFeeInfo
-          fundingFee={results.fundingFee}
-          isFirstTimeUse={inputs.isFirstTimeUse}
-          hasDisabilityRating={inputs.hasDisabilityRating}
-          downPaymentPercent={inputs.downPayment}
-        />
       </div>
 
       {/* Right Column - Results */}
       <div className="lg:col-span-2 order-2">
         <h2 className="text-xl lg:text-2xl font-bold mb-4 lg:mb-6">Your Results</h2>
-        <CalculatorResults results={results} />
+        <CalculatorResults 
+          results={results} 
+          inputs={{
+            isFirstTimeUse: inputs.isFirstTimeUse,
+            hasDisabilityRating: inputs.hasDisabilityRating,
+            downPayment: inputs.downPayment
+          }}
+        />
       </div>
     </div>
   )

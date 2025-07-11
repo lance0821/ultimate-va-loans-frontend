@@ -2,12 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Phone } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { MainNav } from '../navigation/MainNav'
 import { MobileNav } from '../navigation/MobileNav'
 import { useScrollPosition } from '@/hooks/use-scroll-position'
-import { ctaButton, phoneNumber } from '../navigation/navigation.config'
+import { ctaButton} from '../navigation/navigation.config'
 import { cn } from '@/lib/utils'
 
 export function Header() {
@@ -53,10 +52,6 @@ export function Header() {
               className="hidden md:flex items-center gap-2 text-gray-700 hover:text-va-blue"
               asChild
             >
-              <a href={`tel:${phoneNumber.replace(/\D/g, '')}`}>
-                <Phone className="h-4 w-4" />
-                <span className="font-medium">{phoneNumber}</span>
-              </a>
             </Button>
 
             {/* Get Quote CTA */}
