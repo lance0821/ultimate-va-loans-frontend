@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import PurchaseHeroSection from '@/components/va-loans/purchase/PurchaseHeroSection';
+import VALoanProcessTimeline from '@/components/va-loans/purchase/VALoanProcessTimeline';
 import ComingSoonSection from '@/components/va-loans/purchase/ComingSoonSection';
 
 export const metadata: Metadata = {
@@ -61,11 +62,8 @@ export default function VALoanPurchasePage() {
       <main className="min-h-screen">
         <PurchaseHeroSection />
         
-        {/* Future sections - will be implemented in subsequent PRPs */}
-        <ComingSoonSection 
-          title="VA Loan Process Timeline" 
-          description="Interactive timeline showing the 5-step VA loan process"
-        />
+        {/* VA Loan Process Timeline - Implemented */}
+        <VALoanProcessTimeline />
         <ComingSoonSection 
           title="Eligibility Requirements" 
           description="Check your VA loan eligibility and understand requirements"
