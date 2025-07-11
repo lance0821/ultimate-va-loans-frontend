@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['localhost', 'your-supabase-project.supabase.co'],
+    domains: ['localhost', 'your-supabase-project.supabase.co', 'images.unsplash.com'],
     formats: ['image/avif', 'image/webp'],
   },
   // Security headers
