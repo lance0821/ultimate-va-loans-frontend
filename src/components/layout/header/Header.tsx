@@ -2,12 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Phone } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { MainNav } from '../navigation/MainNav'
 import { MobileNav } from '../navigation/MobileNav'
 import { useScrollPosition } from '@/hooks/use-scroll-position'
-import { ctaButton, phoneNumber } from '../navigation/navigation.config'
+import { ctaButton} from '../navigation/navigation.config'
 import { cn } from '@/lib/utils'
 
 export function Header() {
