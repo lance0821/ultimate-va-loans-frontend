@@ -2,7 +2,13 @@ import { Metadata } from 'next';
 import PurchaseHeroSection from '@/components/va-loans/purchase/PurchaseHeroSection';
 import VALoanProcessTimeline from '@/components/va-loans/purchase/VALoanProcessTimeline';
 import EligibilityRequirements from '@/components/va-loans/purchase/EligibilityRequirements';
-import ComingSoonSection from '@/components/va-loans/purchase/ComingSoonSection';
+import VALoanAdvantages from '@/components/va-loans/purchase/VALoanAdvantages';
+import HomeShoppingTips from '@/components/va-loans/purchase/HomeShoppingTips';
+import VALoanLimitsSection from '@/components/va-loans/purchase/VALoanLimitsSection';
+import EducationalResources from '@/components/va-loans/purchase/EducationalResources';
+import CalculatorHub from '@/components/calculators/CalculatorHub';
+import SuccessStories from '@/components/va-loans/purchase/SuccessStories';
+import PurchaseCTASection from '@/components/va-loans/purchase/PurchaseCTASection';
 
 export const metadata: Metadata = {
   title: 'Purchase a Home with Your VA Loan | 0% Down Payment | Ultimate VA Loans',
@@ -68,34 +74,30 @@ export default function VALoanPurchasePage() {
         
         {/* Eligibility Requirements - Implemented */}
         <EligibilityRequirements />
-        <ComingSoonSection 
-          title="VA Loan Advantages" 
-          description="See why VA loans are better than conventional loans"
-        />
-        <ComingSoonSection 
-          title="Home Shopping Tips" 
-          description="Expert advice for finding your perfect home"
-        />
-        <ComingSoonSection 
-          title="VA Loan Limits & Funding Fee" 
-          description="Understand loan limits and calculate your funding fee"
-        />
-        <ComingSoonSection 
-          title="Educational Resources" 
-          description="Videos, guides, and tools to help you succeed"
-        />
-        <ComingSoonSection 
-          title="Calculator Tools" 
-          description="Calculate payments, affordability, and more"
-        />
-        <ComingSoonSection 
-          title="Success Stories" 
-          description="Real veterans share their homebuying experiences"
-        />
-        <ComingSoonSection 
-          title="Get Started" 
-          description="Ready to begin? Here's how to start your VA loan journey"
-        />
+        
+        {/* VA Loan Advantages - Implemented */}
+        <VALoanAdvantages />
+        
+        {/* Home Shopping Tips - Implemented */}
+        <HomeShoppingTips />
+        
+        {/* VA Loan Limits & Funding Fee - Implemented */}
+        <VALoanLimitsSection />
+        
+        {/* Educational Resources - Implemented */}
+        <EducationalResources />
+        
+        {/* Calculator Tools - Implemented */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <CalculatorHub />
+          </div>
+        </section>
+        {/* Success Stories - Implemented */}
+        <SuccessStories />
+        
+        {/* Final CTA Section - Implemented */}
+        <PurchaseCTASection />
       </main>
     </>
   );
