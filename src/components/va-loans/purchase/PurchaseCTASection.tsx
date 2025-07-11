@@ -62,7 +62,7 @@ export default function PurchaseCTASection() {
         {/* Trust Indicators */}
         <div className="flex flex-wrap justify-center gap-6 mb-12">
           {TRUST_INDICATORS.map((indicator) => {
-            const IconComponent = Icons[indicator.icon as keyof typeof Icons] || Icons.Circle;
+            const IconComponent = (Icons[indicator.icon as keyof typeof Icons] as React.ComponentType<{className?: string}>) || Icons.Circle;
             
             return (
               <div key={indicator.text} className="flex items-center gap-2">

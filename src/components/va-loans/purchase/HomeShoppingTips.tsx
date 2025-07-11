@@ -47,7 +47,7 @@ export default function HomeShoppingTips() {
             <TabsContent value="tips" className="mt-6 space-y-6">
               <div className="grid gap-6 md:grid-cols-2">
                 {HOME_SHOPPING_TIPS.map((tip) => {
-                  const IconComponent = Icons[tip.icon as keyof typeof Icons] || Icons.Circle;
+                  const IconComponent = (Icons[tip.icon as keyof typeof Icons] as React.ComponentType<{className?: string}>) || Icons.Circle;
                   
                   return (
                     <Card key={tip.id}>

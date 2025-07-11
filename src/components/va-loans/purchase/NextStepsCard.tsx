@@ -13,7 +13,7 @@ interface NextStepsCardProps {
 }
 
 export default function NextStepsCard({ step }: NextStepsCardProps) {
-  const IconComponent = Icons[step.icon as keyof typeof Icons] || Icons.Circle;
+  const IconComponent = (Icons[step.icon as keyof typeof Icons] as React.ComponentType<{className?: string}>) || Icons.Circle;
 
   const renderAction = () => {
     const baseClasses = "w-full";

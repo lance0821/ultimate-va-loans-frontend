@@ -96,7 +96,7 @@ export default function EducationalResources() {
                 </h3>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                   {RESOURCE_LINKS.map((resource) => {
-                    const IconComponent = Icons[resource.icon as keyof typeof Icons] || Icons.Calculator;
+                    const IconComponent = (Icons[resource.icon as keyof typeof Icons] as React.ComponentType<{className?: string}>) || Icons.Calculator;
                     
                     return (
                       <Card key={resource.url} className="hover:shadow-md transition-shadow">

@@ -28,7 +28,7 @@ export default function ContactOptions() {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {CONTACT_OPTIONS.map((option) => {
-        const IconComponent = Icons[option.icon as keyof typeof Icons] || Icons.Circle;
+        const IconComponent = (Icons[option.icon as keyof typeof Icons] as React.ComponentType<{className?: string}>) || Icons.Circle;
         
         return (
           <Button

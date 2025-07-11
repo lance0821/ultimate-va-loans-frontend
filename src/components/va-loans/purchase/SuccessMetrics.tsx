@@ -29,7 +29,7 @@ export default function SuccessMetrics() {
   return (
     <div id="success-metrics" className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       {SUCCESS_METRICS.map((metric, index) => {
-        const IconComponent = Icons[metric.icon as keyof typeof Icons] || Icons.Circle;
+        const IconComponent = (Icons[metric.icon as keyof typeof Icons] as React.ComponentType<{className?: string}>) || Icons.Circle;
         const delay = index * 100;
 
         return (
