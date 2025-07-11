@@ -3,6 +3,7 @@ import PurchaseHeroSection from '@/components/va-loans/purchase/PurchaseHeroSect
 import VALoanProcessTimeline from '@/components/va-loans/purchase/VALoanProcessTimeline';
 import EligibilityRequirements from '@/components/va-loans/purchase/EligibilityRequirements';
 import VALoanAdvantages from '@/components/va-loans/purchase/VALoanAdvantages';
+import HomeShoppingTips from '@/components/va-loans/purchase/HomeShoppingTips';
 import ComingSoonSection from '@/components/va-loans/purchase/ComingSoonSection';
 
 export const metadata: Metadata = {
@@ -72,10 +73,9 @@ export default function VALoanPurchasePage() {
         
         {/* VA Loan Advantages - Implemented */}
         <VALoanAdvantages />
-        <ComingSoonSection 
-          title="Home Shopping Tips" 
-          description="Expert advice for finding your perfect home"
-        />
+        
+        {/* Home Shopping Tips - Implemented */}
+        <HomeShoppingTips />
         <ComingSoonSection 
           title="VA Loan Limits & Funding Fee" 
           description="Understand loan limits and calculate your funding fee"

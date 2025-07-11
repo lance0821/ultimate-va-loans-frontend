@@ -21,6 +21,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ultimatevaloans.com'),
   title: 'VA Home Loans - Zero Down Payment for Veterans',
   description: 'Get your VA home loan with zero down payment. We specialize in helping Veterans and military families achieve homeownership.',
   keywords: 'VA loans, VA home loans, veteran loans, zero down payment, military home loans',
@@ -40,8 +41,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'VA Home Loans - Zero Down Payment for Veterans',
     description: 'Get your VA home loan with zero down payment. We specialize in helping Veterans and military families achieve homeownership.',
-    url: 'https://your-domain.com',
-    siteName: 'VA Home Loans',
+    url: 'https://ultimatevaloans.com',
+    siteName: 'Ultimate VA Loans',
     locale: 'en_US',
     type: 'website',
   },
