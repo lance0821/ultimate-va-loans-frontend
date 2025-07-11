@@ -7,6 +7,7 @@ import HomeShoppingTips from '@/components/va-loans/purchase/HomeShoppingTips';
 import VALoanLimitsSection from '@/components/va-loans/purchase/VALoanLimitsSection';
 import EducationalResources from '@/components/va-loans/purchase/EducationalResources';
 import ComingSoonSection from '@/components/va-loans/purchase/ComingSoonSection';
+import CalculatorHub from '@/components/calculators/CalculatorHub';
 
 export const metadata: Metadata = {
   title: 'Purchase a Home with Your VA Loan | 0% Down Payment | Ultimate VA Loans',
@@ -84,10 +85,13 @@ export default function VALoanPurchasePage() {
         
         {/* Educational Resources - Implemented */}
         <EducationalResources />
-        <ComingSoonSection 
-          title="Calculator Tools" 
-          description="Calculate payments, affordability, and more"
-        />
+        
+        {/* Calculator Tools - Implemented */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <CalculatorHub />
+          </div>
+        </section>
         <ComingSoonSection 
           title="Success Stories" 
           description="Real veterans share their homebuying experiences"
