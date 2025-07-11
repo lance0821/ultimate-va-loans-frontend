@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import PurchaseHeroSection from '@/components/va-loans/purchase/PurchaseHeroSection';
 import VALoanProcessTimeline from '@/components/va-loans/purchase/VALoanProcessTimeline';
+import EligibilityRequirements from '@/components/va-loans/purchase/EligibilityRequirements';
 import ComingSoonSection from '@/components/va-loans/purchase/ComingSoonSection';
 
 export const metadata: Metadata = {
@@ -64,10 +65,9 @@ export default function VALoanPurchasePage() {
         
         {/* VA Loan Process Timeline - Implemented */}
         <VALoanProcessTimeline />
-        <ComingSoonSection 
-          title="Eligibility Requirements" 
-          description="Check your VA loan eligibility and understand requirements"
-        />
+        
+        {/* Eligibility Requirements - Implemented */}
+        <EligibilityRequirements />
         <ComingSoonSection 
           title="VA Loan Advantages" 
           description="See why VA loans are better than conventional loans"
