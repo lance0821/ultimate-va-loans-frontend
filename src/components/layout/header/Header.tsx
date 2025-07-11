@@ -53,10 +53,6 @@ export function Header() {
               className="hidden md:flex items-center gap-2 text-gray-700 hover:text-va-blue"
               asChild
             >
-              <a href={`tel:${phoneNumber.replace(/\D/g, '')}`}>
-                <Phone className="h-4 w-4" />
-                <span className="font-medium">{phoneNumber}</span>
-              </a>
             </Button>
 
             {/* Get Quote CTA */}
