@@ -18,8 +18,8 @@
   --secondary-foreground: oklch(0.2924 0.0709 264.7708);
   --muted: oklch(0.9683 0.0069 247.8956);
   --muted-foreground: oklch(0.5544 0.0407 257.4166);
-  --accent: oklch(0.4992 0.1781 20.6916);
-  --accent-foreground: oklch(1.0000 0 0);
+  --accent: oklch(85.9% 0.166 91.2);  /* VA Gold - for highlights/badges */
+  --accent-foreground: oklch(0.2077 0.0398 265.7549);
   --destructive: oklch(0.5771 0.2152 27.3250);
   --destructive-foreground: oklch(1.0000 0 0);
   --border: oklch(0.9288 0.0126 255.5078);
@@ -191,6 +191,29 @@
   
   .nav-link-disabled {
     @apply text-muted-foreground pointer-events-none;
+  }
+  
+  /* Override navigation menu styles with raw CSS for higher specificity */
+  [data-slot="navigation-menu"] button:hover,
+  [data-slot="navigation-menu-trigger"]:hover {
+    background-color: oklch(0.2924 0.0709 264.7708 / 0.1) !important;
+    color: oklch(0.2924 0.0709 264.7708) !important;
+  }
+  
+  [data-slot="navigation-menu-trigger"][data-state="open"] {
+    background-color: oklch(0.2924 0.0709 264.7708 / 0.1) !important;
+    color: oklch(0.2924 0.0709 264.7708) !important;
+  }
+  
+  /* Override dropdown link styles */
+  [data-slot="navigation-menu-link"]:hover {
+    background-color: oklch(0.2924 0.0709 264.7708 / 0.1) !important;
+    color: oklch(0.2924 0.0709 264.7708) !important;
+  }
+  
+  [data-slot="navigation-menu-link"][data-active="true"] {
+    background-color: oklch(0.2924 0.0709 264.7708 / 0.1) !important;
+    color: oklch(0.2924 0.0709 264.7708) !important;
   }
   
   /* Mobile navigation specific */
