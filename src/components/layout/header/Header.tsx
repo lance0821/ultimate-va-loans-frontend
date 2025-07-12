@@ -35,8 +35,8 @@ export function Header() {
               href="/" 
               className="flex items-center space-x-2 font-bold text-xl"
             >
-              <span className="text-va-blue">VA</span>
-              <span className="text-gray-900">Home Loans</span>
+              <span className="va-highlight">VA</span>
+              <span className="nav-link">Home Loans</span>
             </Link>
           </div>
 
@@ -49,7 +49,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="sm"
-              className="hidden md:flex items-center gap-2 text-gray-700 hover:text-va-blue"
+              className="hidden md:flex items-center gap-2 nav-link nav-link-hover"
               asChild
             >
             </Button>
@@ -57,7 +57,7 @@ export function Header() {
             {/* Get Quote CTA */}
             <Button
               size="sm"
-              className="bg-va-blue hover:bg-[oklch(36.5%_0.145_254.6)] text-white"
+              className="btn-va-primary"
               asChild
             >
               <Link href={ctaButton.href}>

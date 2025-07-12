@@ -27,8 +27,8 @@ export function MainNav() {
               <>
                 <NavigationMenuTrigger 
                   className={cn(
-                    'h-auto px-4 py-2',
-                    pathname.startsWith(item.href) && 'text-va-blue'
+                    'h-auto px-4 py-2 nav-link',
+                    pathname.startsWith(item.href) && 'nav-link-active'
                   )}
                 >
                   {item.title}
@@ -53,8 +53,8 @@ export function MainNav() {
                   href={item.href}
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    'h-auto px-4 py-2',
-                    pathname === item.href && 'text-va-blue'
+                    'h-auto px-4 py-2 nav-link',
+                    pathname === item.href && 'nav-link-active'
                   )}
                 >
                   {item.title}
@@ -79,7 +79,7 @@ const ListItem = React.forwardRef<
           ref={ref}
           href={href || '#'}
           className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors btn-ghost',
             className
           )}
           {...props}

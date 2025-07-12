@@ -169,6 +169,367 @@
   }
 }
 
+/* ========================================================================== */
+/* COMPONENT COLOR CLASSES - Single Source of Truth                           */
+/* ========================================================================== */
+
+@layer components {
+  /* ============================== NAVIGATION ============================== */
+  
+  /* Base navigation link styles */
+  .nav-link {
+    @apply text-foreground transition-colors duration-200;
+  }
+  
+  .nav-link-hover {
+    @apply hover:text-primary;
+  }
+  
+  .nav-link-active {
+    @apply text-primary font-medium;
+  }
+  
+  .nav-link-disabled {
+    @apply text-muted-foreground pointer-events-none;
+  }
+  
+  /* Mobile navigation specific */
+  .nav-mobile-link {
+    @apply text-foreground transition-colors duration-200 px-3 py-2 rounded-md;
+  }
+  
+  .nav-mobile-hover {
+    @apply hover:bg-gray-50 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100;
+  }
+  
+  .nav-mobile-active {
+    @apply bg-gray-100 text-primary dark:bg-gray-800 dark:text-primary;
+  }
+  
+  /* ============================== BUTTONS ============================== */
+  
+  /* Primary button - Main CTAs */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 
+           focus-visible:ring-2 focus-visible:ring-va-blue focus-visible:ring-offset-2;
+  }
+  
+  /* Secondary button - Less prominent actions */
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80
+           focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2;
+  }
+  
+  /* Destructive button - Delete/dangerous actions only */
+  .btn-destructive {
+    @apply bg-destructive text-destructive-foreground hover:bg-destructive/90
+           focus-visible:ring-2 focus-visible:ring-destructive focus-visible:ring-offset-2;
+  }
+  
+  /* Ghost button - Minimal style */
+  .btn-ghost {
+    @apply hover:bg-accent hover:text-accent-foreground
+           focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2;
+  }
+  
+  /* Outline button */
+  .btn-outline {
+    @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground
+           focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  }
+  
+  /* VA-specific button */
+  .btn-va-primary {
+    @apply bg-primary text-white hover:bg-primary/90
+           focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  }
+  
+  /* ============================== FORMS ============================== */
+  
+  /* Form input base */
+  .form-input {
+    @apply border-input bg-background
+           focus:ring-2 focus:ring-primary focus:border-transparent
+           disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  
+  /* Form input error state */
+  .form-input-error {
+    @apply border-destructive focus:ring-destructive focus:border-destructive;
+  }
+  
+  /* Form input success state */
+  .form-input-success {
+    @apply border-green-500 focus:ring-green-500 focus:border-green-500;
+  }
+  
+  /* Form labels */
+  .form-label {
+    @apply text-foreground font-medium;
+  }
+  
+  .form-label-required {
+    @apply after:content-['*'] after:ml-0.5 after:text-destructive;
+  }
+  
+  /* Form helper text */
+  .form-helper {
+    @apply text-muted-foreground text-sm;
+  }
+  
+  /* Form error messages */
+  .form-error {
+    @apply text-destructive text-sm font-medium;
+  }
+  
+  /* Form success messages */
+  .form-success {
+    @apply text-green-600 text-sm font-medium;
+  }
+  
+  /* ============================== CARDS ============================== */
+  
+  /* Interactive card - clickable/hoverable */
+  .card-interactive {
+    @apply transition-all duration-200
+           hover:shadow-md hover:border-primary/20 hover:-translate-y-0.5
+           focus-within:ring-2 focus-within:ring-primary/20;
+  }
+  
+  /* Highlighted card */
+  .card-highlight {
+    @apply border-accent bg-accent/5 dark:bg-accent/10;
+  }
+  
+  /* Success card */
+  .card-success {
+    @apply border-green-200 bg-green-50 dark:bg-green-900/20 dark:border-green-800;
+  }
+  
+  /* Warning card */
+  .card-warning {
+    @apply border-yellow-200 bg-yellow-50 dark:bg-yellow-900/20 dark:border-yellow-800;
+  }
+  
+  /* Error card */
+  .card-error {
+    @apply border-destructive/20 bg-destructive/5 dark:bg-destructive/10;
+  }
+  
+  /* ============================== BADGES ============================== */
+  
+  /* Badge variants */
+  .badge-primary {
+    @apply bg-primary/10 text-primary hover:bg-primary/20;
+  }
+  
+  .badge-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+  
+  .badge-success {
+    @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100;
+  }
+  
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100;
+  }
+  
+  .badge-error {
+    @apply bg-destructive/10 text-destructive;
+  }
+  
+  .badge-info {
+    @apply bg-primary/10 text-primary;
+  }
+  
+  /* VA-specific badges */
+  .badge-va-gold {
+    @apply bg-accent/20 text-yellow-900 dark:text-yellow-100;
+  }
+  
+  /* ============================== ALERTS ============================== */
+  
+  /* Alert variants */
+  .alert-info {
+    @apply border-primary/20 bg-primary/5 text-primary
+           [&>svg]:text-primary;
+  }
+  
+  .alert-success {
+    @apply border-green-200 bg-green-50 text-green-800
+           [&>svg]:text-green-600
+           dark:border-green-800 dark:bg-green-900/20 dark:text-green-100;
+  }
+  
+  .alert-warning {
+    @apply border-yellow-200 bg-yellow-50 text-yellow-800
+           [&>svg]:text-yellow-600
+           dark:border-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-100;
+  }
+  
+  .alert-error {
+    @apply border-destructive/20 bg-destructive/5 text-destructive
+           [&>svg]:text-destructive;
+  }
+  
+  /* ============================== TABS ============================== */
+  
+  /* Tab navigation */
+  .tab-list {
+    @apply border-b border-border;
+  }
+  
+  .tab-trigger {
+    @apply text-muted-foreground transition-all
+           hover:text-foreground
+           disabled:pointer-events-none disabled:opacity-50;
+  }
+  
+  .tab-trigger-active {
+    @apply text-primary border-b-2 border-primary font-medium;
+  }
+  
+  /* ============================== LINKS ============================== */
+  
+  /* Primary link - standard blue link */
+  .link-primary {
+    @apply text-primary hover:text-primary/80 underline-offset-4 hover:underline;
+  }
+  
+  /* Subtle link - less prominent */
+  .link-subtle {
+    @apply text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline;
+  }
+  
+  /* VA Blue link */
+  .link-va {
+    @apply text-primary hover:text-primary/80 underline-offset-4 hover:underline;
+  }
+  
+  /* ============================== STATUS INDICATORS ============================== */
+  
+  .status-active {
+    @apply text-green-600 dark:text-green-400;
+  }
+  
+  .status-pending {
+    @apply text-yellow-600 dark:text-yellow-400;
+  }
+  
+  .status-inactive {
+    @apply text-muted-foreground;
+  }
+  
+  .status-error {
+    @apply text-destructive;
+  }
+  
+  /* Status dots */
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+  
+  .status-dot-active {
+    @apply w-2 h-2 rounded-full bg-green-500;
+  }
+  
+  .status-dot-pending {
+    @apply w-2 h-2 rounded-full bg-yellow-500;
+  }
+  
+  .status-dot-error {
+    @apply w-2 h-2 rounded-full bg-destructive;
+  }
+  
+  /* ============================== VA-SPECIFIC PATTERNS ============================== */
+  
+  /* VA highlight text */
+  .va-highlight {
+    @apply text-primary font-semibold;
+  }
+  
+  /* VA accent text */
+  .va-accent {
+    @apply text-accent;
+  }
+  
+  /* VA hero statistics */
+  .va-hero-stat {
+    @apply text-4xl md:text-5xl font-bold text-primary;
+  }
+  
+  /* VA benefit icons */
+  .va-benefit-icon {
+    @apply text-primary w-6 h-6;
+  }
+  
+  /* VA trust badges */
+  .va-trust-badge {
+    @apply text-accent border-accent/20 bg-accent/5;
+  }
+  
+  /* ============================== PROGRESS INDICATORS ============================== */
+  
+  .progress-bar {
+    @apply bg-muted;
+  }
+  
+  .progress-bar-fill {
+    @apply bg-primary transition-all duration-300 ease-out;
+  }
+  
+  .progress-bar-success {
+    @apply bg-green-500;
+  }
+  
+  .progress-bar-warning {
+    @apply bg-yellow-500;
+  }
+  
+  .progress-bar-error {
+    @apply bg-destructive;
+  }
+  
+  /* ============================== FOCUS STATES ============================== */
+  
+  /* Standard focus ring */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  
+  /* Focus visible ring (keyboard navigation) */
+  .focus-visible-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  }
+  
+  /* VA Gold focus ring for special elements */
+  .focus-ring-gold {
+    @apply focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2;
+  }
+  
+  /* ============================== INTERACTIVE STATES ============================== */
+  
+  /* Hover lift effect */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  /* Hover scale effect */
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+  
+  /* Active press effect */
+  .active-press {
+    @apply active:scale-95 transition-transform duration-100;
+  }
+}
+
+/* ========================================================================== */
+/* ANIMATIONS                                                                 */
+/* ========================================================================== */
+
 /* Smooth number animations */
 @keyframes countUp {
   from {
@@ -185,21 +546,6 @@
   animation: countUp 0.6s ease-out forwards;
 }
 
-/* Focus styles for accessibility */
-.focus-visible\:ring-va-gold:focus-visible {
-  --tw-ring-color: var(--va-gold);
-}
-
-/* Navigation focus styles */
-.focus-visible\:ring-va-blue:focus-visible {
-  --tw-ring-color: var(--va-blue);
-}
-
-/* Smooth transitions for navigation */
-.nav-transition {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 /* Mobile menu animation */
 @keyframes slideIn {
   from {
@@ -214,9 +560,30 @@
   animation: slideIn 0.3s ease-out;
 }
 
-/* Sticky header shadow */
-.header-shadow {
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+/* ========================================================================== */
+/* UTILITY OVERRIDES                                                          */
+/* ========================================================================== */
+
+@layer utilities {
+  /* Dark mode specific overrides */
+  .dark {
+    /* Navigation in dark mode */
+    .nav-link-active {
+      @apply text-primary;
+    }
+    
+    /* Cards in dark mode */
+    .card-interactive:hover {
+      @apply border-primary/30;
+    }
+  }
+  
+  /* Print styles */
+  @media print {
+    .no-print {
+      @apply hidden;
+    }
+  }
 }
 
 /* Mobile-specific utilities */

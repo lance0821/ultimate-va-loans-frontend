@@ -58,7 +58,7 @@ export function MobileNav() {
                 <div key={item.href}>
                   {item.children ? (
                     <div className="space-y-2">
-                      <div className="font-semibold text-sm text-gray-900 px-3 py-2">
+                      <div className="font-semibold text-sm nav-link px-3 py-2">
                         {item.title}
                       </div>
                       <div className="pl-4 space-y-1">
@@ -68,10 +68,10 @@ export function MobileNav() {
                             href={child.href}
                             onClick={closeMenu}
                             className={cn(
-                              'block px-3 py-2 text-sm rounded-md transition-colors',
+                              'block px-3 py-2 text-sm rounded-md nav-mobile-link',
                               pathname === child.href
-                                ? 'bg-gray-100 text-va-blue font-medium'
-                                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                                ? 'nav-mobile-active'
+                                : 'nav-mobile-hover'
                             )}
                           >
                             <div className="flex items-center justify-between">
@@ -87,10 +87,10 @@ export function MobileNav() {
                       href={item.href}
                       onClick={closeMenu}
                       className={cn(
-                        'block px-3 py-2 text-sm font-medium rounded-md transition-colors',
+                        'block px-3 py-2 text-sm font-medium rounded-md nav-mobile-link',
                         pathname === item.href
-                          ? 'bg-gray-100 text-va-blue'
-                          : 'text-gray-900 hover:bg-gray-50'
+                          ? 'nav-mobile-active'
+                          : 'nav-mobile-hover'
                       )}
                     >
                       {item.title}
@@ -104,7 +104,7 @@ export function MobileNav() {
             
             {/* Get Quote CTA */}
             <Button
-              className="w-full bg-va-blue hover:bg-[oklch(36.5%_0.145_254.6)]"
+              className="w-full btn-va-primary"
               asChild
               onClick={closeMenu}
             >

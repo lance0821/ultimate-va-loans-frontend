@@ -33,13 +33,13 @@ export function FooterNavigation() {
     <>
       {navigationSections.map((section) => (
         <div key={section.title}>
-          <h4 className="font-semibold mb-4 text-va-gold">{section.title}</h4>
+          <h4 className="font-semibold mb-4 va-accent">{section.title}</h4>
           <ul className="space-y-2">
             {section.links.map((link) => (
               <li key={link.href}>
                 <a 
                   href={link.href} 
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                  className="link-subtle text-sm"
                 >
                   {link.title}
                 </a>
