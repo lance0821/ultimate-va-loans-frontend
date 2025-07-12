@@ -1,67 +1,112 @@
 @import "tailwindcss";
 
-/* Define CSS variables for theming (outside of @layer) */
 :root {
-  /* Custom VA colors */
-  --va-blue: oklch(31.3% 0.133 254.6);  /* #003F72 */
+     /* Custom VA colors */
+  --va-blue: oklch(0.2924 0.0709 264.7708);
   --va-gold: oklch(85.9% 0.166 91.2);   /* #F7C654 */
-  --va-red: oklch(47.3% 0.179 21.8);    /* #C41E3A */
-  
-  /* shadcn/ui theme variables */
-  --background: oklch(100% 0 0);
-  --foreground: oklch(17.5% 0.109 254.6);
-  --card: oklch(100% 0 0);
-  --card-foreground: oklch(17.5% 0.109 254.6);
-  --popover: oklch(100% 0 0);
-  --popover-foreground: oklch(17.5% 0.109 254.6);
-  --primary: oklch(31.3% 0.133 254.6); /* VA Blue */
-  --primary-foreground: oklch(97.8% 0.014 238.7);
-  --secondary: oklch(96.1% 0.014 238.7);
-  --secondary-foreground: oklch(23.8% 0.092 254.6);
-  --muted: oklch(96.1% 0.014 238.7);
-  --muted-foreground: oklch(56.5% 0.036 244.3);
-  --accent: oklch(85.9% 0.166 91.2); /* VA Gold */
-  --accent-foreground: oklch(23.8% 0.092 254.6);
-  --destructive: oklch(59.3% 0.216 27.3);
-  --destructive-foreground: oklch(97.8% 0.014 238.7);
-  --border: oklch(91.5% 0.021 241.1);
-  --input: oklch(91.5% 0.021 241.1);
-  --ring: oklch(31.3% 0.133 254.6);
-  
-  /* Other theme values */
-  --radius: 0.5rem;
+  --va-red: oklch(0.5925 0.2176 27.3248);    /* #C41E3A */
+
+  --background: oklch(1.0000 0 0);
+  --foreground: oklch(0.2077 0.0398 265.7549);
+  --card:  #F5F5F5;
+  --card-foreground:  #0F172A;
+  --popover: oklch(1.0000 0 0);
+  --popover-foreground: oklch(0.2077 0.0398 265.7549);
+  --primary: oklch(0.2924 0.0709 264.7708);
+  --primary-foreground: oklch(1.0000 0 0);
+  --secondary: oklch(0.9392 0.0075 260.7315);
+  --secondary-foreground: oklch(0.2924 0.0709 264.7708);
+  --muted: oklch(0.9683 0.0069 247.8956);
+  --muted-foreground: oklch(0.5544 0.0407 257.4166);
+  --accent: oklch(0.4992 0.1781 20.6916);
+  --accent-foreground: oklch(1.0000 0 0);
+  --destructive: oklch(0.5771 0.2152 27.3250);
+  --destructive-foreground: oklch(1.0000 0 0);
+  --border: oklch(0.9288 0.0126 255.5078);
+  --input: oklch(0.9288 0.0126 255.5078);
+  --ring: oklch(0.2924 0.0709 264.7708);
+  --chart-1: oklch(0.2924 0.0709 264.7708);
+  --chart-2: oklch(0.4992 0.1781 20.6916);
+  --chart-3: oklch(0.4955 0.0896 126.1858);
+  --chart-4: oklch(0.6231 0.1880 259.8145);
+  --chart-5: oklch(0.7686 0.1647 70.0804);
+  --sidebar: oklch(0.9702 0 0);
+  --sidebar-foreground: oklch(0.2077 0.0398 265.7549);
+  --sidebar-primary: oklch(0.2924 0.0709 264.7708);
+  --sidebar-primary-foreground: oklch(1.0000 0 0);
+  --sidebar-accent: oklch(0.9392 0.0075 260.7315);
+  --sidebar-accent-foreground: oklch(0.2924 0.0709 264.7708);
+  --sidebar-border: oklch(0.9288 0.0126 255.5078);
+  --sidebar-ring: oklch(0.2924 0.0709 264.7708);
+  --font-sans: Inter, sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --radius: 0.625rem;
+  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
+  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
+  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
+  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
 }
 
 .dark {
-  --background: oklch(17.5% 0.109 254.6);
-  --foreground: oklch(97.8% 0.014 238.7);
-  --card: oklch(17.5% 0.109 254.6);
-  --card-foreground: oklch(97.8% 0.014 238.7);
-  --popover: oklch(17.5% 0.109 254.6);
-  --popover-foreground: oklch(97.8% 0.014 238.7);
-  --primary: oklch(97.8% 0.014 238.7);
-  --primary-foreground: oklch(23.8% 0.092 254.6);
-  --secondary: oklch(26.2% 0.047 246.0);
-  --secondary-foreground: oklch(97.8% 0.014 238.7);
-  --muted: oklch(26.2% 0.047 246.0);
-  --muted-foreground: oklch(68.8% 0.031 241.7);
-  --accent: oklch(26.2% 0.047 246.0);
-  --accent-foreground: oklch(97.8% 0.014 238.7);
-  --destructive: oklch(40.9% 0.205 27.3);
-  --destructive-foreground: oklch(97.8% 0.014 238.7);
-  --border: oklch(26.2% 0.047 246.0);
-  --input: oklch(26.2% 0.047 246.0);
-  --ring: oklch(85.5% 0.025 241.1);
+  --background: oklch(0.1450 0 0);
+  --foreground: oklch(0.9850 0 0);
+  --card: oklch(0.2050 0 0);
+  --card-foreground: oklch(0.9850 0 0);
+  --popover: oklch(0.2690 0 0);
+  --popover-foreground: oklch(0.9850 0 0);
+  --primary: oklch(1.0000 0 0);
+  --primary-foreground: oklch(0.2050 0 0);
+  --secondary: oklch(0.2690 0 0);
+  --secondary-foreground: oklch(0.9850 0 0);
+  --muted: oklch(0.2690 0 0);
+  --muted-foreground: oklch(0.7080 0 0);
+  --accent: oklch(0.3710 0 0);
+  --accent-foreground: oklch(0.9850 0 0);
+  --destructive: oklch(0.7040 0.1910 22.2160);
+  --destructive-foreground: oklch(0.9850 0 0);
+  --border: oklch(0.2750 0 0);
+  --input: oklch(0.3250 0 0);
+  --ring: oklch(0.5560 0 0);
+  --chart-1: oklch(0.8100 0.1000 252);
+  --chart-2: oklch(0.6200 0.1900 260);
+  --chart-3: oklch(0.5500 0.2200 263);
+  --chart-4: oklch(0.4900 0.2200 264);
+  --chart-5: oklch(0.4200 0.1800 266);
+  --sidebar: oklch(0.2050 0 0);
+  --sidebar-foreground: oklch(0.9850 0 0);
+  --sidebar-primary: oklch(0.4880 0.2430 264.3760);
+  --sidebar-primary-foreground: oklch(0.9850 0 0);
+  --sidebar-accent: oklch(0.2690 0 0);
+  --sidebar-accent-foreground: oklch(0.9850 0 0);
+  --sidebar-border: oklch(0.2750 0 0);
+  --sidebar-ring: oklch(0.4390 0 0);
+  --font-sans: Inter, sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --radius: 0.625rem;
+  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
+  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
+  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
+  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
 }
 
-/* Map CSS variables to Tailwind theme using @theme inline */
 @theme inline {
-  /* VA custom colors */
+      /* VA custom colors */
   --color-va-blue: var(--va-blue);
   --color-va-gold: var(--va-gold);
   --color-va-red: var(--va-red);
-  
-  /* shadcn/ui colors */
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -81,10 +126,37 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  
-  /* Other theme values */
-  --radius: var(--radius);
-  --font-sans: "Inter", system-ui, sans-serif;
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
 }
 
 @layer base {
@@ -95,20 +167,6 @@
     background-color: var(--background);
     color: var(--foreground);
   }
-}
-
-/* Background grid pattern */
-.bg-grid-white\/\[0\.05\] {
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-}
-
-/* Grid background pattern */
-.bg-grid-white\/5 {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 64px 64px;
 }
 
 /* Smooth number animations */
