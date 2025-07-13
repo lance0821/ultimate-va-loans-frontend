@@ -22,7 +22,7 @@ export function MobileNav() {
       <Button
         variant="ghost"
         size="icon"
-        className="lg:hidden"
+        className="lg:hidden touch-target"
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle navigation menu"
       >
@@ -36,7 +36,7 @@ export function MobileNav() {
             <SheetTitle>Menu</SheetTitle>
           </SheetHeader>
           
-          <div className="mt-6 flex flex-col space-y-4">
+          <div className="mt-6 flex flex-col space-y-4" role="navigation" aria-label="Mobile navigation">
             {/* Phone CTA */}
             <Button
               variant="outline"
@@ -53,64 +53,63 @@ export function MobileNav() {
             <Separator />
             
             {/* Navigation Items */}
-            <nav className="flex flex-col space-y-2">
-              {navigationItems.map((item) => (
-                <div key={item.href}>
-                  {item.children ? (
-                    <div className="space-y-2">
-                      <div className="font-semibold text-sm nav-link px-3 py-2">
+            {navigationItems.map((item) => (
+              <div key={item.href} className="border-b border-border last:border-0">
+                {item.children ? (
+                  <details className="group">
+                    <summary className={cn(
+                      "flex items-center justify-between w-full py-3 px-2 text-left nav-link nav-link-hover nav-focus-visible cursor-pointer touch-target",
+                      pathname.startsWith(item.href) && "nav-link-active"
+                    )}>
+                      <span className="flex items-center gap-2 font-medium">
+                        {item.icon && <item.icon className="w-5 h-5" aria-hidden="true" />}
                         {item.title}
-                      </div>
-                      <div className="pl-4 space-y-1">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            onClick={closeMenu}
-                            className={cn(
-                              'block px-3 py-2 text-sm rounded-md nav-mobile-link',
-                              pathname === child.href
-                                ? 'nav-mobile-active'
-                                : 'nav-mobile-hover'
-                            )}
-                          >
-                            <div className="flex items-center justify-between">
-                              {child.title}
-                              <ChevronRight className="h-4 w-4 opacity-50" />
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
+                      </span>
+                      <ChevronRight className="h-4 w-4 transition-transform group-open:rotate-90" aria-hidden="true" />
+                    </summary>
+                    <div className="pl-6 pb-3 space-y-1">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className={cn(
+                            "block py-2 px-2 rounded text-sm nav-link nav-link-hover",
+                            pathname === child.href && "bg-primary/10 text-primary font-medium"
+                          )}
+                          onClick={closeMenu}
+                        >
+                          {child.title}
+                        </Link>
+                      ))}
                     </div>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      onClick={closeMenu}
-                      className={cn(
-                        'block px-3 py-2 text-sm font-medium rounded-md nav-mobile-link',
-                        pathname === item.href
-                          ? 'nav-mobile-active'
-                          : 'nav-mobile-hover'
-                      )}
-                    >
-                      {item.title}
-                    </Link>
-                  )}
-                </div>
-              ))}
-            </nav>
+                  </details>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "flex items-center py-3 px-2 nav-link nav-link-hover nav-focus-visible touch-target",
+                      pathname === item.href && "nav-link-active"
+                    )}
+                    onClick={closeMenu}
+                  >
+                    {item.icon && <item.icon className="w-5 h-5 mr-2" aria-hidden="true" />}
+                    <span className="font-medium">{item.title}</span>
+                  </Link>
+                )}
+              </div>
+            ))}
             
             <Separator />
             
-            {/* Get Quote CTA */}
+            {/* CTA Button */}
             <Button
+              size="lg"
               className="w-full btn-va-primary"
               asChild
               onClick={closeMenu}
             >
               <Link href={ctaButton.href}>
                 {ctaButton.title}
-                <ChevronRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>

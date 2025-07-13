@@ -121,7 +121,7 @@ export function EligibilityChecklist() {
         <div className="flex justify-center pt-4">
           <Button 
             onClick={checkEligibility}
-            className="bg-va-blue hover:bg-va-blue/90"
+            className="bg-primary-900 hover:bg-primary-900/90"
           >
             Check My Eligibility
           </Button>
@@ -162,7 +162,7 @@ export function EligibilityChecklist() {
                   This is a preliminary assessment. Contact us for a detailed eligibility review and to start your application.
                 </p>
                 <div className="flex gap-2">
-                  <Button size="sm" className="bg-va-blue hover:bg-va-blue/90">
+                  <Button size="sm" className="bg-primary-900 hover:bg-primary-900/90">
                     Get Started
                   </Button>
                   <Button size="sm" variant="outline">

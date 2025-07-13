@@ -52,7 +52,7 @@ export function CookieConsent() {
             <Button variant="outline" size="sm" onClick={handleDecline}>
               Decline
             </Button>
-            <Button size="sm" onClick={handleAccept} className="bg-va-blue hover:bg-va-blue/90">
+            <Button size="sm" onClick={handleAccept} className="bg-primary-900 hover:bg-primary-900/90">
               Accept
             </Button>
           </div>

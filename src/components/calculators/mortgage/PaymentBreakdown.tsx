@@ -12,7 +12,7 @@ export function PaymentBreakdown({ results }: PaymentBreakdownProps) {
     {
       label: 'Principal & Interest',
       amount: results.principalAndInterest,
-      color: 'bg-va-blue',
+      color: 'bg-primary-900',
     },
     {
       label: 'Property Tax',
