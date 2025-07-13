@@ -42,7 +42,7 @@ export function CalculatorResults({ results, inputs }: CalculatorResultsProps) {
   return (
     <div className="space-y-4 sm:space-y-6">
       {/* Primary Result - Hero Element */}
-      <Card className="bg-va-blue text-white">
+      <Card className="bg-primary-900 text-white">
         <CardContent className="pt-6 text-center">
           <p className="text-lg mb-2">Estimated Monthly Payment</p>
           <p className="text-5xl sm:text-6xl font-bold mb-4">
@@ -121,7 +121,7 @@ export function CalculatorResults({ results, inputs }: CalculatorResultsProps) {
 
       {/* CTAs - Always Visible */}
       <div className="flex flex-col sm:flex-row gap-4 sticky bottom-0 bg-background pt-4">
-        <Button asChild className="flex-1 bg-va-blue hover:bg-[oklch(36.5%_0.145_254.6)] min-h-[44px]">
+        <Button asChild className="flex-1 bg-primary-900 hover:bg-[oklch(36.5%_0.145_254.6)] min-h-[44px]">
           <Link href="/get-started">
             <FileText className="mr-2 h-4 w-4" />
             Get Pre-Approved

@@ -114,7 +114,7 @@ export function LoanComparison() {
           </p>
           <button
             onClick={handleGetStarted}
-            className="inline-flex items-center gap-2 bg-va-blue text-white px-8 py-4 rounded-md font-semibold hover:bg-blue-900 transition-colors shadow-md"
+            className="inline-flex items-center gap-2 bg-primary-900 text-white px-8 py-4 rounded-md font-semibold hover:bg-blue-900 transition-colors shadow-md"
             aria-label="Get started with your VA loan"
           >
             Get Started Today

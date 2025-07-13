@@ -28,9 +28,9 @@ export function CalculatorEmbed({ type }: CalculatorEmbedProps) {
   const calc = calculatorInfo[type]
 
   return (
-    <div className="bg-va-blue/5 border border-va-blue/20 rounded-lg p-6">
+    <div className="bg-primary-900/5 border border-va-blue/20 rounded-lg p-6">
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 bg-va-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
+        <div className="w-12 h-12 bg-primary-900/10 rounded-lg flex items-center justify-center flex-shrink-0">
           <Calculator className="h-6 w-6 text-va-blue" />
         </div>
         <div className="flex-1">

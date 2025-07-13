@@ -13,7 +13,7 @@ export function PreviewResult({
   isCalculating 
 }: PreviewResultProps) {
   return (
-    <div className="bg-va-blue text-white rounded-lg p-6 text-center">
+    <div className="bg-primary-900 text-white rounded-lg p-6 text-center">
       <div className="mb-4">
         <p className="text-sm opacity-90 mb-2">You can afford up to</p>
         <div className="text-4xl md:text-5xl font-bold mb-1">

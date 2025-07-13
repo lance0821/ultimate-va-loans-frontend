@@ -18,7 +18,7 @@ export default function ReviewsPage() {
       
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <div className="bg-va-blue text-white py-16 lg:py-20">
+        <div className="bg-primary-900 text-white py-16 lg:py-20">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl lg:text-5xl font-bold mb-6">
               Veteran Success Stories

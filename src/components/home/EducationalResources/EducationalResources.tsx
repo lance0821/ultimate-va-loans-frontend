@@ -33,7 +33,7 @@ export function EducationalResources() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-va-blue/10 rounded-full flex items-center justify-center">
+            <div className="w-16 h-16 bg-primary-900/10 rounded-full flex items-center justify-center">
               <BookOpen className="w-8 h-8 text-va-blue" />
             </div>
           </div>
@@ -62,7 +62,7 @@ export function EducationalResources() {
           <div className="inline-flex flex-col sm:flex-row gap-4">
             <Button 
               size="lg" 
-              className="bg-va-blue hover:bg-va-blue/90"
+              className="bg-primary-900 hover:bg-primary-900/90"
               onClick={() => {
                 if (typeof window !== 'undefined' && window.gtag) {
                   window.gtag('event', 'click_view_all_resources', {

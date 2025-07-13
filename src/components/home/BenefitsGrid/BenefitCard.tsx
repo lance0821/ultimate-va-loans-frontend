@@ -37,13 +37,13 @@ export function BenefitCard({
 
   return (
     <Link href={href} onClick={handleClick} className="block h-full">
-      <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-gray-200">
+      <Card className="h-full card-interactive">
         <CardContent className="p-6 flex flex-col h-full">
           {/* Icon */}
           <div className="mb-4">
             <Icon 
               className={cn(
-                "w-12 h-12",
+                "w-12 h-12 va-benefit-icon",
                 iconColor
               )} 
               aria-hidden="true"
@@ -51,18 +51,18 @@ export function BenefitCard({
           </div>
           
           {/* Title */}
-          <h3 className="text-xl font-semibold mb-2 text-gray-900">
+          <h3 className="text-xl font-semibold mb-2">
             {title}
           </h3>
           
           {/* Description */}
-          <p className="text-gray-600 mb-4 flex-grow">
+          <p className="text-muted-foreground mb-4 flex-grow">
             {description}
           </p>
           
           {/* CTA */}
           <div className="mt-auto">
-            <span className="text-va-blue font-medium inline-flex items-center gap-1 group">
+            <span className="link-va font-medium inline-flex items-center gap-1 group">
               {ctaText}
               <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">
                 →

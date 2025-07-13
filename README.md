@@ -78,7 +78,7 @@ This project uses Tailwind CSS v4 with a CSS-first configuration approach:
 - Configuration is done in `globals.css` using `@theme inline`
 - No `tailwind.config.js` file is needed
 - Custom colors are defined as CSS variables with oklch format
-- VA brand colors: `bg-va-blue`, `text-va-gold`, `border-va-red`
+- VA brand colors: `bg-primary-900`, `text-va-gold`, `border-va-red`
 
 ## Environment Variables
 

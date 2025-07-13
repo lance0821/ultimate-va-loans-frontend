@@ -14,7 +14,7 @@ export default function AffordabilityCalculatorPage() {
     <>
       {/* Hero Section */}
       <div className="text-center mb-8">
-        <Badge className="mb-4 bg-va-blue text-white">
+        <Badge className="mb-4 bg-primary-900 text-white">
           Affordability Calculator
         </Badge>
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -29,7 +29,7 @@ export default function AffordabilityCalculatorPage() {
       {/* Benefits */}
       <div className="grid sm:grid-cols-3 gap-4 mb-8">
         <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm">
-          <div className="w-10 h-10 bg-va-blue/10 rounded-full flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 bg-primary-900/10 rounded-full flex items-center justify-center flex-shrink-0">
             <Home className="h-5 w-5 text-va-blue" />
           </div>
           <div>

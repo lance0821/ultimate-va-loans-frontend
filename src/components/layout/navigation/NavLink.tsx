@@ -20,8 +20,8 @@ export function NavLink({ href, children, className, onClick }: NavLinkProps) {
       href={href}
       onClick={onClick}
       className={cn(
-        'text-sm font-medium transition-colors hover:text-va-blue',
-        isActive ? 'text-va-blue' : 'text-gray-600',
+        'text-sm font-medium nav-link nav-link-hover',
+        isActive && 'nav-link-active',
         className
       )}
     >

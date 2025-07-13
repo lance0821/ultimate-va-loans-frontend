@@ -6,7 +6,7 @@ import { ChevronRight, Shield, DollarSign, Home } from 'lucide-react'
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[500px] sm:min-h-[600px] lg:min-h-[700px] overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
+    <section className="relative min-h-[500px] sm:min-h-[600px] lg:min-h-[700px] bg-gradient-to-br from-va-blue to-va-blue/90 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       

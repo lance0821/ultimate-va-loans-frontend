@@ -91,7 +91,7 @@ export function ReviewsSection() {
                 key={i}
                 className={cn(
                   "h-2 rounded-full transition-all",
-                  i === 0 ? "w-8 bg-va-blue" : "w-2 bg-gray-300"
+                  i === 0 ? "w-8 bg-primary-900" : "w-2 bg-gray-300"
                 )}
               />
             ))}
