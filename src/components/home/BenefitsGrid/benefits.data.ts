@@ -1,10 +1,7 @@
 import { 
-  CheckCircle2, 
-  Calculator, 
-  DollarSign, 
-  Home, 
-  BookOpen, 
-  ArrowRight 
+  Shield,        // Changed from CheckCircle2 for stronger visual
+  Home,         // Keep for $0 down
+  FileText      // Changed from ArrowRight for quote/document
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
@@ -16,61 +13,45 @@ export interface Benefit {
   href: string
   ctaText: string
   iconColor: string
+  emphasis?: 'standard' | 'enhanced' | 'primary'  // NEW: Visual hierarchy
 }
 
 export const benefits: Benefit[] = [
   {
     id: 'eligibility',
-    icon: CheckCircle2,
-    title: 'Check Your Eligibility',
-    description: 'Find out if you qualify for a VA loan in minutes with our simple eligibility guide.',
-    href: '/eligibility/guide',
-    ctaText: 'Check Eligibility',
-    iconColor: 'text-va-blue'
+    icon: Shield,
+    title: 'Check Eligibility',
+    description: 'Find out if you qualify for VA loan benefits in minutes',
+    href: '/eligibility/check',  // Updated to match US-016-v2
+    ctaText: 'Check Now',
+    iconColor: 'text-va-blue',
+    emphasis: 'standard'
   },
   {
     id: 'zero-down',
-    icon: DollarSign,
-    title: 'Buy with $0 Down',
-    description: 'Purchase your dream home with no down payment required for qualified veterans.',
-    href: '/va-loans/basics#benefits',
-    ctaText: 'Learn More',
-    iconColor: 'text-green-600'
-  },
-  {
-    id: 'calculator',
-    icon: Calculator,
-    title: 'VA Loan Calculator',
-    description: 'Calculate your monthly payments and see how much home you can afford.',
-    href: '/calculators/mortgage',
-    ctaText: 'Calculate Now',
-    iconColor: 'text-va-blue'
-  },
-  {
-    id: 'rates',
     icon: Home,
-    title: "Today's VA Rates",
-    description: 'Get current VA loan rates and see how they compare to conventional loans.',
-    href: '/rates',
-    ctaText: 'View Rates',
-    iconColor: 'text-va-gold'
-  },
-  {
-    id: 'first-time',
-    icon: BookOpen,
-    title: 'First-Time Homebuyers',
-    description: 'Everything you need to know about using your VA loan benefit for the first time.',
-    href: '/va-loans/basics',
-    ctaText: 'Get Started',
-    iconColor: 'text-va-blue'
+    title: 'Buy with $0 Down',
+    description: 'Calculate your payment with zero down payment required',
+    href: '/calculators/mortgage',
+    ctaText: 'Calculate Payment',
+    iconColor: 'text-va-gold',
+    emphasis: 'enhanced'
   },
   {
     id: 'quote',
-    icon: ArrowRight,
+    icon: FileText,
     title: 'Get Your Quote',
-    description: 'Ready to move forward? Get a personalized quote in minutes.',
+    description: 'Start your application and get pre-approved today',
     href: '/get-started',
-    ctaText: 'Start Quote',
-    iconColor: 'text-va-gold'
+    ctaText: 'Start Now',
+    iconColor: 'text-white',  // White icon on primary button
+    emphasis: 'primary'
   }
+]
+
+// Export old benefits for migration reference (remove after migration)
+export const legacyBenefits = [
+  "Today's VA Rates - moved to hero section",
+  "VA Loan Calculator - moved to main navigation",
+  "First-Time Buyers Guide - moved to education section"
 ]

@@ -42,6 +42,8 @@ export function MainNav() {
                         key={child.href}
                         title={child.title}
                         href={child.href}
+                        icon={child.icon}      // Pass icon
+                        badge={child.badge}    // Pass badge
                       >
                         {child.description}
                       </ListItem>
@@ -74,9 +76,24 @@ export function MainNav() {
 
 const ListItem = React.forwardRef<
   React.ElementRef<'a'>,
-  React.ComponentPropsWithoutRef<'a'> & { title: string }
->(({ className, title, children, href, ...props }, ref) => {
-  const pathname = usePathname() // Add this line
+  React.ComponentPropsWithoutRef<'a'> & { 
+    title: string
+    icon?: React.ComponentType<{ className?: string }>      // Add icon prop
+    badge?: string         // Add badge prop
+  }
+>(({ className, title, children, href, icon: Icon, badge, ...props }, ref) => {
+  const pathname = usePathname()
+  
+  // Analytics tracking for calculator clicks
+  const handleClick = () => {
+    if (href?.startsWith('/calculators/') && typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'navigation_calculator_click', {
+        event_category: 'Navigation',
+        event_label: title,
+        calculator_type: href.split('/').pop()
+      })
+    }
+  }
   
   return (
     <li>
@@ -84,6 +101,7 @@ const ListItem = React.forwardRef<
         <Link
           ref={ref}
           href={href || '#'}
+          onClick={handleClick}
           className={cn(
             'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none',
             'transition-all duration-200 hover:bg-primary/5 hover:scale-[1.02]',
@@ -93,10 +111,35 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="nav-dropdown-title">{title}</div>
-          <p className="nav-dropdown-description line-clamp-2">
-            {children}
-          </p>
+          <div className="flex items-start gap-3">
+            {/* Icon */}
+            {Icon && (
+              <div className="mt-0.5">
+                <Icon className="w-5 h-5 text-va-blue" aria-hidden="true" />
+              </div>
+            )}
+            
+            <div className="flex-1">
+              {/* Title with Badge */}
+              <div className="flex items-center gap-2">
+                <span className="nav-dropdown-title font-medium">{title}</span>
+                {badge && (
+                  <span className={cn(
+                    "text-xs px-2 py-0.5 rounded-full font-medium",
+                    badge === 'Most Popular' && "bg-va-gold text-va-blue",
+                    badge === 'Coming Soon' && "bg-gray-200 text-gray-600"
+                  )}>
+                    {badge}
+                  </span>
+                )}
+              </div>
+              
+              {/* Description */}
+              <p className="nav-dropdown-description line-clamp-2 text-sm text-gray-600 mt-1">
+                {children}
+              </p>
+            </div>
+          </div>
         </Link>
       </NavigationMenuLink>
     </li>

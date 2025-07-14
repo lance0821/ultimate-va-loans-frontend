@@ -1,7 +1,12 @@
 import { 
   Home, 
   FileCheck, 
-  Calculator, 
+  Calculator,
+  DollarSign,      // Add for payment calculator
+  HomeIcon,        // Add for affordability
+  RefreshCw,       // Add for refinance
+  Receipt,         // Add for funding fee
+  // MapPin,          // Add for BAH (future)
   GraduationCap
 } from 'lucide-react'
 import { LucideIcon } from 'lucide-react'
@@ -13,6 +18,7 @@ export interface NavItem {
   description?: string
   children?: NavItem[]
   external?: boolean
+  badge?: string  // Add badge support
 }
 
 export const navigationItems: NavItem[] = [
@@ -76,25 +82,38 @@ export const navigationItems: NavItem[] = [
     icon: Calculator,
     children: [
       {
-        title: 'Mortgage Calculator',
+        title: 'VA Loan Payment',
         href: '/calculators/mortgage',
         description: 'Calculate your monthly payment',
+        icon: DollarSign,
+        badge: 'Most Popular'  // Add badge
       },
       {
-        title: 'Affordability Calculator',
+        title: 'Affordability',
         href: '/calculators/affordability',
         description: 'How much home can you afford?',
+        icon: HomeIcon,
+      },
+      {
+        title: 'Refinance Savings',  // Add refinance
+        href: '/calculators/refinance',
+        description: 'Calculate potential refinance savings',
+        icon: RefreshCw,
       },
       {
         title: 'VA Funding Fee',
         href: '/calculators/funding-fee',
-        description: 'Calculate your funding fee',
+        description: 'Calculate your one-time funding fee',
+        icon: Receipt,
       },
-      {
-        title: 'Refinance Calculator',
-        href: '/calculators/refinance',
-        description: 'See your potential savings',
-      },
+      // Future enhancement - uncomment when BAH calculator is built
+      // {
+      //   title: 'BAH Calculator',
+      //   href: '/calculators/bah',
+      //   description: 'Find your housing allowance by location',
+      //   icon: MapPin,
+      //   badge: 'Coming Soon'
+      // },
     ],
   },
   {

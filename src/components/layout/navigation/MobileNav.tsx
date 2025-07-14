@@ -73,12 +73,50 @@ export function MobileNav() {
                           key={child.href}
                           href={child.href}
                           className={cn(
-                            "block py-2 px-2 rounded text-sm nav-link nav-link-hover",
+                            "block py-3 px-2 rounded nav-link nav-link-hover",
                             pathname === child.href && "bg-primary/10 text-primary font-medium"
                           )}
-                          onClick={closeMenu}
+                          onClick={() => {
+                            // Analytics tracking
+                            if (child.href.startsWith('/calculators/') && typeof window !== 'undefined' && window.gtag) {
+                              window.gtag('event', 'mobile_navigation_calculator_click', {
+                                event_category: 'Navigation',
+                                event_label: child.title,
+                                calculator_type: child.href.split('/').pop()
+                              })
+                            }
+                            closeMenu()
+                          }}
                         >
-                          {child.title}
+                          <div className="flex items-start gap-3">
+                            {/* Icon */}
+                            {child.icon && (
+                              <child.icon className="w-5 h-5 text-va-blue mt-0.5 flex-shrink-0" aria-hidden="true" />
+                            )}
+                            
+                            <div className="flex-1">
+                              {/* Title with Badge */}
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="font-medium text-sm">{child.title}</span>
+                                {child.badge && (
+                                  <span className={cn(
+                                    "text-xs px-2 py-0.5 rounded-full font-medium",
+                                    child.badge === 'Most Popular' && "bg-va-gold text-va-blue",
+                                    child.badge === 'Coming Soon' && "bg-gray-200 text-gray-600"
+                                  )}>
+                                    {child.badge}
+                                  </span>
+                                )}
+                              </div>
+                              
+                              {/* Description */}
+                              {child.description && (
+                                <p className="text-xs text-gray-600">
+                                  {child.description}
+                                </p>
+                              )}
+                            </div>
+                          </div>
                         </Link>
                       ))}
                     </div>

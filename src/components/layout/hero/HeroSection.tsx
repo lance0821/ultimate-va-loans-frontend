@@ -3,12 +3,21 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { ChevronRight, Shield, DollarSign, Home } from 'lucide-react'
+import { RateDisplay } from './RateDisplay'
 
 export function HeroSection() {
   return (
     <section className="relative min-h-[500px] sm:min-h-[600px] lg:min-h-[700px] bg-gradient-to-br from-va-blue to-va-blue/90 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+      
+      {/* Rate Display - Desktop: top-right, Mobile: below hero content */}
+      <div className="lg:hidden">
+        {/* Mobile/Tablet Rate Display - rendered after hero content */}
+      </div>
+      <div className="hidden lg:block">
+        <RateDisplay />
+      </div>
       
       <div className="relative z-10 container mx-auto px-4 py-12 lg:py-20">
         <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
@@ -65,6 +74,11 @@ export function HeroSection() {
          
             </div>  
           </div>        
+        </div>
+        
+        {/* Mobile/Tablet Rate Display - Below main content */}
+        <div className="lg:hidden mt-8">
+          <RateDisplay />
         </div>
       </div>
     </section>

@@ -18,10 +18,32 @@ export function EducationalResources() {
     if (inView && typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'view_educational_resources', {
         event_category: 'Homepage',
-        event_label: 'Educational Resources Section Viewed'
+        event_label: 'Educational Resources Section Viewed',
+        has_featured: true  // Track that we have featured content
       })
     }
   }, [inView])
+  
+  // Separate featured from standard resources with error handling
+  const featuredResource = featuredResources.find(r => r.featured)
+  const standardResources = featuredResources.filter(r => !r.featured)
+  
+  // Fallback if no featured resource
+  if (!featuredResource) {
+    console.warn('No featured resource found, displaying standard grid')
+    return (
+      <section ref={ref} className="py-16 bg-white" aria-label="Educational Resources">
+        <div className="container mx-auto px-4">
+          {/* Standard grid fallback */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredResources.map((resource) => (
+              <ResourceCard key={resource.id} resource={resource} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
   
   return (
     <section 
@@ -47,15 +69,40 @@ export function EducationalResources() {
           </p>
         </div>
         
-        {/* Resource Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {featuredResources.map((resource) => (
-            <ResourceCard
-              key={resource.id}
-              resource={resource}
-            />
-          ))}
+        {/* Featured + Standard Grid Layout */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+          {/* Featured Resource - Left Side */}
+          {featuredResource && (
+            <div className="lg:row-span-2">
+              <ResourceCard 
+                resource={featuredResource} 
+                isFeatured={true}
+              />
+            </div>
+          )}
+          
+          {/* Standard Resources - Right Side */}
+          <div className="grid gap-6">
+            {standardResources.slice(0, 2).map((resource) => (
+              <ResourceCard
+                key={resource.id}
+                resource={resource}
+              />
+            ))}
+          </div>
         </div>
+        
+        {/* Additional Resource if needed */}
+        {standardResources.length > 2 && (
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {standardResources.slice(2).map((resource) => (
+              <ResourceCard
+                key={resource.id}
+                resource={resource}
+              />
+            ))}
+          </div>
+        )}
         
         {/* CTA Section */}
         <div className="text-center">
