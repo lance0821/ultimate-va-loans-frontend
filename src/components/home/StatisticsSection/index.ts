@@ -1,5 +1,0 @@
-export { StatisticsSection } from './StatisticsSection'
-export { StatCard } from './StatCard'
-export { AnimatedCounter } from './AnimatedCounter'
-export { statistics } from './statistics.data'
-export type { Statistic } from './statistics.data'
