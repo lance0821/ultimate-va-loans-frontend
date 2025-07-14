@@ -1,6 +1,6 @@
 import { HeroSection } from '@/components/layout/hero/HeroSection'
 import { BenefitsGrid } from '@/components/home/BenefitsGrid'
-import { StatisticsSection } from '@/components/home/StatisticsSection'
+import { TrustIndicatorsSection } from '@/components/home/TrustIndicators'
 import { AffordabilityPreview } from '@/components/home/AffordabilityPreview'
 import { LoanComparison } from '@/components/home/LoanComparison'
 import { EducationalResources } from '@/components/home/EducationalResources'
@@ -15,8 +15,8 @@ export default function HomePage() {
       {/* Benefits Grid Section */}
       <BenefitsGrid />
       
-      {/* Statistics Section */}
-      <StatisticsSection />
+      {/* Trust Indicators Section */}
+      <TrustIndicatorsSection />
       
       {/* Affordability Calculator Preview */}
       <AffordabilityPreview />

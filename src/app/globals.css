@@ -546,7 +546,7 @@
   }
   
   .loan-card-highlighted {
-    @apply bg-primary text-primary-foreground ring-2 ring-accent dark:bg-primary dark:text-primary-foreground;
+    @apply bg-gradient-to-br from-va-blue to-va-blue/90 text-primary-foreground ring-2 ring-accent dark:bg-primary dark:text-primary-foreground;
   }
   
   /* Resource cards */
@@ -708,7 +708,62 @@
   
   /* VA stat value */
   .va-stat-value {
-    @apply text-primary;
+    @apply text-gray-900; /* Neutral fallback */
+  }
+  
+  /* ============================== TRUST INDICATORS ============================== */
+
+  /* Trust indicator specific styles */
+  .trust-indicator-gold {
+    color: var(--va-gold);
+  }
+
+  .trust-indicator-blue {
+    color: var(--va-blue);
+  }
+
+  .trust-indicator-green {
+    color: oklch(65% 0.15 142); /* Soft success green */
+  }
+
+  /* Icon background colors with proper opacity */
+  .trust-icon-bg-gold {
+    background-color: oklch(from var(--va-gold) l c h / 0.1);
+  }
+
+  .trust-icon-bg-blue {
+    background-color: oklch(from var(--va-blue) l c h / 0.1);
+  }
+
+  .trust-icon-bg-green {
+    background-color: oklch(65% 0.15 142 / 0.1);
+  }
+
+  /* Hover state improvements */
+  @media (hover: hover) {
+    .trust-card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .trust-card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+  }
+
+  /* Mobile touch feedback */
+  @media (hover: none) {
+    .trust-card-hover:active {
+      transform: scale(0.98);
+    }
+  }
+
+  /* Gradient backgrounds for warmth */
+  .trust-gradient-warm {
+    background: linear-gradient(135deg, 
+      oklch(98% 0 0) 0%, 
+      oklch(97% 0.01 100) 100%
+    );
   }
   
   /* VA benefit icons */
