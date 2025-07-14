@@ -48,7 +48,7 @@ export function TrustIndicatorsSection() {
   return (
     <section 
       ref={ref}
-      className="py-20 bg-gradient-to-b from-white to-gray-50/50"
+      className="py-20 bg-gradient-to-br"
       aria-label="Why Florida Veterans Trust Us"
     >
       <div className="container mx-auto px-4">
@@ -85,9 +85,8 @@ export function TrustIndicatorsSection() {
             <Link href="/team">
               <Button 
                 size="lg" 
-                variant="outline"
                 onClick={handleTeamCTA}
-                className="group"
+                className="bg-white text-va-blue hover:bg-white/90"
               >
                 <Users className="w-5 h-5" />
                 Meet Your Personal Loan Team
@@ -99,7 +98,7 @@ export function TrustIndicatorsSection() {
               <Button 
                 size="lg"
                 onClick={handleApplicationCTA}
-                className="bg-va-blue hover:bg-va-blue/90"
+                className="bg-va-gold hover:bg-va-gold/90 text-va-blue"
               >
                 Start Your Application
                 <ArrowRight className="w-4 h-4" />
