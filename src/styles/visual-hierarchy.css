@@ -1,0 +1,180 @@
+@layer theme {
+  /* Typography Scale - Mobile First */
+  --vh-text-xs: clamp(0.875rem, 2vw + 0.5rem, 0.875rem);
+  --vh-text-sm: clamp(1rem, 2vw + 0.5rem, 1rem);
+  --vh-text-base: clamp(1.125rem, 2vw + 0.5rem, 1rem);
+  --vh-text-lg: clamp(1.25rem, 2vw + 0.5rem, 1.125rem);
+  --vh-text-xl: clamp(1.5rem, 3vw + 0.5rem, 1.25rem);
+  --vh-text-2xl: clamp(2rem, 4vw + 0.5rem, 2rem);
+  --vh-text-3xl: clamp(2.5rem, 5vw + 1rem, 3rem);
+  --vh-text-4xl: clamp(3rem, 6vw + 1rem, 4rem);
+  --vh-text-5xl: clamp(3.5rem, 7vw + 1rem, 4.5rem);
+  
+  /* Visual Weight Scale */
+  --vh-weight-100: 1;     /* 100% - Primary elements */
+  --vh-weight-70: 0.7;    /* 70% - Secondary elements */
+  --vh-weight-50: 0.5;    /* 50% - Tertiary elements */
+  --vh-weight-30: 0.3;    /* 30% - Supporting elements */
+  
+  /* Spacing Scale for Sections */
+  --vh-space-xs: clamp(1rem, 2vw, 1.5rem);
+  --vh-space-sm: clamp(2rem, 4vw, 3rem);
+  --vh-space-md: clamp(3rem, 6vw, 4rem);
+  --vh-space-lg: clamp(4rem, 8vw, 6rem);
+  --vh-space-xl: clamp(6rem, 10vw, 8rem);
+  --vh-space-2xl: clamp(8rem, 12vw, 10rem);
+  
+  /* Focus and Interaction States */
+  --vh-focus-ring-width: 3px;
+  --vh-focus-ring-offset: 2px;
+  --vh-focus-ring-color: var(--color-primary-400);
+  
+  /* Animation Durations */
+  --vh-transition-fast: 150ms;
+  --vh-transition-base: 300ms;
+  --vh-transition-slow: 500ms;
+  
+  /* Z-index Scale */
+  --vh-z-base: 0;
+  --vh-z-raised: 10;
+  --vh-z-overlay: 20;
+  --vh-z-modal: 30;
+  --vh-z-popover: 40;
+  --vh-z-tooltip: 50;
+}
+
+@layer utilities {
+  /* Typography Hierarchy Classes */
+  .vh-hero-title {
+    font-size: var(--vh-text-5xl);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    font-weight: 800;
+  }
+  
+  .vh-section-title {
+    font-size: var(--vh-text-3xl);
+    line-height: 1.2;
+    font-weight: 700;
+  }
+  
+  .vh-subsection-title {
+    font-size: var(--vh-text-2xl);
+    line-height: 1.3;
+    font-weight: 600;
+  }
+  
+  .vh-card-title {
+    font-size: var(--vh-text-xl);
+    line-height: 1.4;
+    font-weight: 600;
+  }
+  
+  .vh-body-emphasis {
+    font-size: var(--vh-text-lg);
+    line-height: 1.6;
+    font-weight: 500;
+  }
+  
+  /* Visual Weight Classes */
+  .vh-primary {
+    opacity: var(--vh-weight-100);
+    font-weight: 700;
+  }
+  
+  .vh-secondary {
+    opacity: var(--vh-weight-70);
+    font-weight: 600;
+  }
+  
+  .vh-tertiary {
+    opacity: var(--vh-weight-50);
+    font-weight: 500;
+  }
+  
+  /* Section Spacing Classes */
+  .vh-section-padding {
+    padding-top: var(--vh-space-xl);
+    padding-bottom: var(--vh-space-xl);
+  }
+  
+  .vh-section-padding-compact {
+    padding-top: var(--vh-space-lg);
+    padding-bottom: var(--vh-space-lg);
+  }
+  
+  /* Focus States */
+  .vh-focus-visible:focus-visible {
+    outline: var(--vh-focus-ring-width) solid var(--vh-focus-ring-color);
+    outline-offset: var(--vh-focus-ring-offset);
+  }
+  
+  /* Skeleton Loading States */
+  .vh-skeleton {
+    background: linear-gradient(
+      90deg,
+      oklch(0.95 0.01 250) 25%,
+      oklch(0.90 0.01 250) 50%,
+      oklch(0.95 0.01 250) 75%
+    );
+    background-size: 200% 100%;
+    animation: vh-skeleton-pulse 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes vh-skeleton-pulse {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* High Contrast Mode Support */
+  @media (prefers-contrast: high) {
+    .vh-focus-visible:focus-visible {
+      outline-width: 4px;
+      outline-style: double;
+    }
+  }
+}
+
+/* CTA Animation */
+@keyframes subtle-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.02); opacity: 0.95; }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 2s ease-in-out infinite;
+}
+
+/* Responsive Section Backgrounds */
+.vh-section-alt:nth-child(even) {
+  background-color: oklch(0.98 0.01 250);
+}
+
+.vh-section-divider {
+  position: relative;
+}
+
+.vh-section-divider::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-border),
+    transparent
+  );
+}
