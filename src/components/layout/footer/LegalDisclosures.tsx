@@ -28,7 +28,7 @@ export function LegalDisclosures() {
             
             {/* VA Logo Placeholder */}
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-va-blue rounded flex items-center justify-center">
+              <div className="w-8 h-8 bg-primary-900 rounded flex items-center justify-center">
                 <span className="text-xs font-bold text-white">VA</span>
               </div>
               <span className="text-xs text-gray-300">VA Approved</span>

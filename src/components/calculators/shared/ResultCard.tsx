@@ -19,23 +19,23 @@ export function ResultCard({
   return (
     <Card className={cn(
       'transition-all',
-      variant === 'primary' && 'border-va-blue bg-va-blue/5',
-      variant === 'success' && 'border-green-600 bg-green-50',
-      variant === 'warning' && 'border-amber-600 bg-amber-50',
+      variant === 'primary' && 'card-highlight',
+      variant === 'success' && 'card-success',
+      variant === 'warning' && 'card-warning',
       className
     )}>
       <CardContent className="p-4">
-        <p className="text-sm text-muted-foreground mb-1">{label}</p>
+        <p className="form-helper mb-1">{label}</p>
         <p className={cn(
           'text-2xl font-bold',
-          variant === 'primary' && 'text-va-blue',
-          variant === 'success' && 'text-green-700',
-          variant === 'warning' && 'text-amber-700'
+          variant === 'primary' && 'va-highlight',
+          variant === 'success' && 'status-active',
+          variant === 'warning' && 'status-pending'
         )}>
           {value}
         </p>
         {subValue && (
-          <p className="text-sm text-muted-foreground mt-1">{subValue}</p>
+          <p className="form-helper mt-1">{subValue}</p>
         )}
       </CardContent>
     </Card>

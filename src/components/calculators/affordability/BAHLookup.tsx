@@ -125,7 +125,7 @@ export function BAHLookup({ open, onOpenChange, onSelect }: BAHLookupProps) {
           {bahAmount !== null && bahAmount > 0 && (
             <Button
               onClick={handleSelect}
-              className="flex-1 bg-va-blue hover:bg-[oklch(36.5%_0.145_254.6)]"
+              className="flex-1 bg-primary-900 hover:bg-[oklch(36.5%_0.145_254.6)]"
             >
               Use This Rate
             </Button>

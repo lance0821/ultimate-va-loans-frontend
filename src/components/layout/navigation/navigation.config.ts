@@ -1,9 +1,13 @@
 import { 
   Home, 
   FileCheck, 
-  Calculator, 
-  GraduationCap,
-  Star
+  Calculator,
+  DollarSign,      // Add for payment calculator
+  HomeIcon,        // Add for affordability
+  RefreshCw,       // Add for refinance
+  Receipt,         // Add for funding fee
+  // MapPin,          // Add for BAH (future)
+  GraduationCap
 } from 'lucide-react'
 import { LucideIcon } from 'lucide-react'
 
@@ -14,6 +18,7 @@ export interface NavItem {
   description?: string
   children?: NavItem[]
   external?: boolean
+  badge?: string  // Add badge support
 }
 
 export const navigationItems: NavItem[] = [
@@ -77,25 +82,38 @@ export const navigationItems: NavItem[] = [
     icon: Calculator,
     children: [
       {
-        title: 'Mortgage Calculator',
+        title: 'VA Loan Payment',
         href: '/calculators/mortgage',
         description: 'Calculate your monthly payment',
+        icon: DollarSign,
+        badge: 'Most Popular'  // Add badge
       },
       {
-        title: 'Affordability Calculator',
+        title: 'Affordability',
         href: '/calculators/affordability',
         description: 'How much home can you afford?',
+        icon: HomeIcon,
+      },
+      {
+        title: 'Refinance Savings',  // Add refinance
+        href: '/calculators/refinance',
+        description: 'Calculate potential refinance savings',
+        icon: RefreshCw,
       },
       {
         title: 'VA Funding Fee',
         href: '/calculators/funding-fee',
-        description: 'Calculate your funding fee',
+        description: 'Calculate your one-time funding fee',
+        icon: Receipt,
       },
-      {
-        title: 'Refinance Calculator',
-        href: '/calculators/refinance',
-        description: 'See your potential savings',
-      },
+      // Future enhancement - uncomment when BAH calculator is built
+      // {
+      //   title: 'BAH Calculator',
+      //   href: '/calculators/bah',
+      //   description: 'Find your housing allowance by location',
+      //   icon: MapPin,
+      //   badge: 'Coming Soon'
+      // },
     ],
   },
   {
@@ -130,11 +148,6 @@ export const navigationItems: NavItem[] = [
       },
     ],
   },
-  {
-    title: 'Reviews',
-    href: '/reviews',
-    icon: Star,
-  },
 ]
 
 export const ctaButton = {
@@ -144,3 +157,16 @@ export const ctaButton = {
 }
 
 export const phoneNumber = '1-800-XXX-XXXX'
+
+// Optional: Service branch colors for personalization
+export const serviceBranchColors = {
+  army: { primary: '#4B5320', secondary: '#FFD700' },
+  navy: { primary: '#000080', secondary: '#FFD700' },
+  airForce: { primary: '#00308F', secondary: '#C0C0C0' },
+  marines: { primary: '#8B0000', secondary: '#FFD700' },
+  coastGuard: { primary: '#FF6347', secondary: '#FFFFFF' },
+  spaceForce: { primary: '#0F1035', secondary: '#C0C0C0' },
+}
+
+// Add patriotic tagline
+export const tagline = "Your Service. Your Benefit. Your Home."

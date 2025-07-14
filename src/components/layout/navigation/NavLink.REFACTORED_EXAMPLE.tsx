@@ -11,6 +11,7 @@ interface NavLinkProps {
   onClick?: () => void
 }
 
+// REFACTORED VERSION USING CENTRALIZED COLOR CLASSES
 export function NavLink({ href, children, className, onClick }: NavLinkProps) {
   const pathname = usePathname()
   const isActive = pathname === href || pathname.startsWith(`${href}/`)
@@ -29,3 +30,17 @@ export function NavLink({ href, children, className, onClick }: NavLinkProps) {
     </Link>
   )
 }
+
+/* 
+WHAT CHANGED:
+1. Removed inline color classes: 'transition-colors hover:text-va-blue'
+2. Removed conditional color logic: isActive ? 'text-va-blue' : 'text-gray-600'
+3. Added semantic classes: 'nav-link nav-link-hover'
+4. Added conditional active class: isActive && 'nav-link-active'
+
+BENEFITS:
+- Color logic is now centralized in globals.css
+- Easier to maintain and update colors globally
+- More semantic and readable
+- Consistent hover/active states across all navigation
+*/

@@ -76,7 +76,7 @@ export function ComparisonRow({ point, loanTypes }: ComparisonRowProps) {
           <td
             key={loanType}
             className={`px-3 py-4 text-sm ${
-              isVA ? 'bg-va-blue/5 font-medium' : ''
+              isVA ? 'bg-primary-900/5 font-medium' : ''
             }`}
           >
             <div className="flex items-center gap-2">

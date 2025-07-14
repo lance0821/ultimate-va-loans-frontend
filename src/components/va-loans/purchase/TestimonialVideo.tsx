@@ -42,7 +42,7 @@ export default function TestimonialVideo({
           <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="bg-white/90 rounded-full p-3 shadow-lg group-hover:scale-110 transition-transform">
-              <Play className="h-6 w-6 text-blue-600 ml-0.5" />
+              <Play className="h-6 w-6 va-icon ml-0.5" />
             </div>
           </div>
           <Badge className="absolute bottom-2 right-2 bg-black/70 text-white">

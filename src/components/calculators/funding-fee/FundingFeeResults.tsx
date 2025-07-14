@@ -49,7 +49,7 @@ export function FundingFeeResults({ inputs, results }: FundingFeeResultsProps) {
           </CardContent>
         </Card>
       ) : (
-        <Card className="bg-va-blue text-white">
+        <Card className="bg-primary-900 text-white">
           <CardContent className="pt-6 text-center">
             <p className="text-lg mb-2">Your VA Funding Fee</p>
             <p className="text-4xl sm:text-5xl font-bold mb-2">
@@ -167,7 +167,7 @@ export function FundingFeeResults({ inputs, results }: FundingFeeResultsProps) {
 
       {/* CTAs */}
       <div className="flex flex-col sm:flex-row gap-4">
-        <Button asChild className="flex-1 bg-va-blue hover:bg-[oklch(36.5%_0.145_254.6)] min-h-[44px]">
+        <Button asChild className="flex-1 bg-primary-900 hover:bg-[oklch(36.5%_0.145_254.6)] min-h-[44px]">
           <Link href="/get-started">
             <FileText className="mr-2 h-4 w-4" />
             Get Your VA Loan Quote

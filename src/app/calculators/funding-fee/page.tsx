@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function FundingFeeCalculatorPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-va-blue text-white py-8 lg:py-12">
+      <div className="bg-primary-900 text-white py-8 lg:py-12">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl lg:text-4xl font-bold mb-4">
             VA Funding Fee Calculator

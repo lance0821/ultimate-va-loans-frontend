@@ -21,7 +21,7 @@ export function StatCard({
 }: StatCardProps) {
   return (
     <div className="text-center p-6">
-      <div className="text-4xl md:text-5xl font-bold text-va-blue mb-2">
+      <div className="text-4xl md:text-5xl font-bold va-stat-value mb-2">
         <AnimatedCounter
           end={value}
           decimals={decimals}
@@ -30,7 +30,7 @@ export function StatCard({
           suffix={suffix}
         />
       </div>
-      <p className="text-gray-600 font-medium">{label}</p>
+      <p className="form-helper font-medium">{label}</p>
     </div>
   )
 }

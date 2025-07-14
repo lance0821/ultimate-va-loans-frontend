@@ -18,10 +18,32 @@ export function EducationalResources() {
     if (inView && typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'view_educational_resources', {
         event_category: 'Homepage',
-        event_label: 'Educational Resources Section Viewed'
+        event_label: 'Educational Resources Section Viewed',
+        has_featured: true  // Track that we have featured content
       })
     }
   }, [inView])
+  
+  // Separate featured from standard resources with error handling
+  const featuredResource = featuredResources.find(r => r.featured)
+  const standardResources = featuredResources.filter(r => !r.featured)
+  
+  // Fallback if no featured resource
+  if (!featuredResource) {
+    console.warn('No featured resource found, displaying standard grid')
+    return (
+      <section ref={ref} className="py-16 bg-white" aria-label="Educational Resources">
+        <div className="container mx-auto px-4">
+          {/* Standard grid fallback */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredResources.map((resource) => (
+              <ResourceCard key={resource.id} resource={resource} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
   
   return (
     <section 
@@ -33,7 +55,7 @@ export function EducationalResources() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-va-blue/10 rounded-full flex items-center justify-center">
+            <div className="w-16 h-16 bg-primary-900/10 rounded-full flex items-center justify-center">
               <BookOpen className="w-8 h-8 text-va-blue" />
             </div>
           </div>
@@ -47,22 +69,47 @@ export function EducationalResources() {
           </p>
         </div>
         
-        {/* Resource Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {featuredResources.map((resource) => (
-            <ResourceCard
-              key={resource.id}
-              resource={resource}
-            />
-          ))}
+        {/* Featured + Standard Grid Layout */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+          {/* Featured Resource - Left Side */}
+          {featuredResource && (
+            <div className="lg:row-span-2">
+              <ResourceCard 
+                resource={featuredResource} 
+                isFeatured={true}
+              />
+            </div>
+          )}
+          
+          {/* Standard Resources - Right Side */}
+          <div className="grid gap-6">
+            {standardResources.slice(0, 2).map((resource) => (
+              <ResourceCard
+                key={resource.id}
+                resource={resource}
+              />
+            ))}
+          </div>
         </div>
+        
+        {/* Additional Resource if needed */}
+        {standardResources.length > 2 && (
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {standardResources.slice(2).map((resource) => (
+              <ResourceCard
+                key={resource.id}
+                resource={resource}
+              />
+            ))}
+          </div>
+        )}
         
         {/* CTA Section */}
         <div className="text-center">
           <div className="inline-flex flex-col sm:flex-row gap-4">
             <Button 
               size="lg" 
-              className="bg-va-blue hover:bg-va-blue/90"
+              className="bg-primary-900 hover:bg-primary-900/90"
               onClick={() => {
                 if (typeof window !== 'undefined' && window.gtag) {
                   window.gtag('event', 'click_view_all_resources', {
