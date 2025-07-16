@@ -5,10 +5,6 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { ChevronRight, Shield, DollarSign, Home } from 'lucide-react'
 import { RateDisplay } from './RateDisplay'
-import { useSimplifiedHero } from '@/lib/feature-flags/hero-simplification'
-
-// Legacy import for A/B testing
-import { HeroSectionLegacy } from './HeroSection.legacy'
 
 interface HeroSectionProps {
   variant?: 'default' | 'compact' | 'campaign'
@@ -17,21 +13,7 @@ interface HeroSectionProps {
   className?: string
 }
 
-export const HeroSection = memo(function HeroSection(props: HeroSectionProps) {
-  // Check feature flag for A/B testing
-  const useSimplified = useSimplifiedHero()
-  
-  // Show legacy version if flag is disabled
-  if (!useSimplified) {
-    return <HeroSectionLegacy />
-  }
-  
-  // New simplified implementation
-  return <HeroSectionSimplified {...props} />
-})
-
-// New simplified hero implementation - matching reference exactly
-const HeroSectionSimplified = memo(function HeroSectionSimplified({}: HeroSectionProps) {
+export const HeroSection = memo(function HeroSection({}: HeroSectionProps) {
   return (
     <section className="relative min-h-[500px] sm:min-h-[600px] lg:min-h-[700px] bg-gradient-to-br from-va-blue to-va-blue/90 overflow-hidden">
       {/* Background Pattern */}
@@ -112,4 +94,3 @@ const HeroSectionSimplified = memo(function HeroSectionSimplified({}: HeroSectio
 })
 
 HeroSection.displayName = 'HeroSection'
-HeroSectionSimplified.displayName = 'HeroSectionSimplified'
