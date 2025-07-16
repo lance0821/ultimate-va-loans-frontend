@@ -56,8 +56,14 @@ export const HeroActions = memo(function HeroActions({
           hierarchy="secondary"
           variant="outline"
           size="lg"
-          href={(secondaryCTA || defaultSecondaryCTA).href}
-          onClick={(secondaryCTA || defaultSecondaryCTA).onClick}
+          onClick={() => {
+            const config = secondaryCTA || defaultSecondaryCTA;
+            if (config.onClick) {
+              config.onClick();
+            } else if (config.href) {
+              window.location.href = config.href;
+            }
+          }}
           className={cn(
             'w-full sm:w-auto',
             'border-white/30 text-white hover:bg-white/10 backdrop-blur-sm'

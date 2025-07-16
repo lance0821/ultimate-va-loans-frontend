@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 import { Section } from '@/components/layout/Section'
-import { Heading } from '@/components/ui/heading'
 // Import content components from PRP-063
 import { ContentSection } from '@/components/content/ContentSection'
 import { VisualBreak } from '@/components/content/VisualBreak'
