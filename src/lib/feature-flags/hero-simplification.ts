@@ -5,8 +5,8 @@ export const heroSimplificationFlag: FeatureFlag = {
   key: 'hero-simplification',
   name: 'Hero Section Simplification',
   description: 'Simplified hero section with extracted components',
-  defaultValue: false,
-  rolloutPercentage: 0, // Start with 0%, increase gradually
+  defaultValue: true,
+  rolloutPercentage: 100, // Enable for all users
   trackingEvents: {
     viewed: 'hero_simplification_viewed',
     ctaClicked: 'hero_simplification_cta_clicked',
