@@ -3,25 +3,26 @@
 import { BenefitCard } from './BenefitCard'
 import { benefits } from './benefits.data'
 import { cn } from '@/lib/utils'
+import { Text } from '@/components/ui/typography'
 
 export function BenefitsGrid() {
   return (
     <section className="py-20 bg-gray-50" aria-labelledby="benefits-heading">
       <div className="container mx-auto px-4 max-w-7xl">
-        {/* Section Header */}
+        {/* Section Header - already using short, scannable text */}
         <div className="text-center mb-16">
-          <p className="text-va-blue font-semibold text-lg mb-3">
+          <Text size="large" color="primary" className="font-semibold mb-3">
             We'll make it easy. You make it home.
-          </p>
+          </Text>
           <h2 
             id="benefits-heading" 
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
           >
             Your VA Loan Journey Starts Here
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <Text size="large" color="muted" className="max-w-3xl mx-auto">
             Three simple steps to homeownership with your VA loan benefits
-          </p>
+          </Text>
         </div>
 
         {/* Streamlined 3-Card Grid */}
@@ -49,14 +50,6 @@ export function BenefitsGrid() {
           ))}
         </div>
 
-        {/* Optional: Migration Notice (remove after launch) */}
-        {process.env.NODE_ENV === 'development' && (
-          <div className="mt-12 p-4 bg-yellow-50 border border-yellow-200 rounded-lg max-w-3xl mx-auto">
-            <p className="text-sm text-yellow-800 text-center">
-              <strong>Migration Note:</strong> Rates moved to hero, Calculator to nav dropdown, First-time buyers to education section
-            </p>
-          </div>
-        )}
       </div>
     </section>
   )

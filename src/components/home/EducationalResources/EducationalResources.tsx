@@ -6,6 +6,7 @@ import { ResourceCard } from './ResourceCard'
 import { featuredResources } from './resources.data'
 import { Button } from '@/components/ui/button'
 import { BookOpen, ArrowRight } from 'lucide-react'
+import { Text } from '@/components/ui/typography'
 
 export function EducationalResources() {
   const { ref, inView } = useInView<HTMLDivElement>({
@@ -52,7 +53,7 @@ export function EducationalResources() {
       aria-label="Educational Resources"
     >
       <div className="container mx-auto px-4">
-        {/* Section Header */}
+        {/* Section Header - simplified for scannability */}
         <div className="text-center mb-12">
           <div className="flex justify-center mb-4">
             <div className="w-16 h-16 bg-primary-900/10 rounded-full flex items-center justify-center">
@@ -63,10 +64,9 @@ export function EducationalResources() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             VA Loan Education Center
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Get expert guidance on VA loans with our comprehensive resources. 
-            From eligibility to closing, we'll help you navigate every step.
-          </p>
+          <Text size="large" color="muted" className="max-w-2xl mx-auto">
+            Expert guides to help you navigate every step of your VA loan.
+          </Text>
         </div>
         
         {/* Featured + Standard Grid Layout */}
@@ -141,12 +141,9 @@ export function EducationalResources() {
             </Button>
           </div>
           
-          <p className="mt-6 text-sm text-gray-600">
-            Have questions? Our VA loan specialists are here to help.{' '}
-            <a href="/contact" className="text-va-blue hover:underline font-medium">
-              Contact us
-            </a>
-          </p>
+          <Text size="small" color="muted" className="mt-6">
+            Questions? <a href="/contact" className="text-va-blue hover:underline font-medium">Contact our VA loan specialists</a>
+          </Text>
         </div>
       </div>
     </section>

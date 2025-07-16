@@ -33,11 +33,16 @@ const buttonVariants = cva(
         tertiary: "underline font-medium p-0 h-auto vh-focus-visible",
         default: "", // No additional styles
       },
+      touchOptimized: {
+        true: "touch-target active:scale-[0.98] transition-transform",
+        false: "",
+      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
       hierarchy: "default",
+      touchOptimized: false,
     },
   }
 )
@@ -46,6 +51,7 @@ export type ButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
     hierarchy?: "primary" | "secondary" | "tertiary" | "default"
+    touchOptimized?: boolean
   }
 
 function Button({
@@ -53,6 +59,7 @@ function Button({
   variant,
   size,
   hierarchy,
+  touchOptimized,
   asChild = false,
   ...props
 }: ButtonProps) {
@@ -61,7 +68,7 @@ function Button({
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, hierarchy, className }))}
+      className={cn(buttonVariants({ variant, size, hierarchy, touchOptimized, className }))}
       {...props}
     />
   )

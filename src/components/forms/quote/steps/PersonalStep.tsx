@@ -9,6 +9,8 @@ import { useFormValidation } from '@/hooks/use-form-validation'
 import { personalSchema } from '@/lib/validations/quote-form'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Info } from 'lucide-react'
+import { SecurityIndicator } from '@/components/trust/SecurityIndicator'
+import { securityContexts } from '@/lib/security-messages'
 
 export function PersonalStep() {
   const { formData, updateFormData, nextStep, prevStep } = useQuoteForm()
@@ -80,10 +82,13 @@ export function PersonalStep() {
         <p className="text-muted-foreground">How can we reach you?</p>
       </div>
       
-      <Alert>
-        <Info className="h-4 w-4" />
-        <AlertDescription>
-          Your information is secure and will only be used to provide you with a personalized quote.
+      <Alert className="border-green-200 bg-green-50">
+        <Info className="h-4 w-4 text-green-600" />
+        <AlertDescription className="text-green-800">
+          <div className="flex items-center justify-between">
+            <span>Your information is secure and will only be used to provide you with a personalized quote.</span>
+            <SecurityIndicator context={securityContexts.contactInfo} variant="minimal" showDetails={false} />
+          </div>
         </AlertDescription>
       </Alert>
       

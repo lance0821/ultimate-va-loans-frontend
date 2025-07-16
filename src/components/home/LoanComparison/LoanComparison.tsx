@@ -7,6 +7,7 @@ import { LoanTypeCard } from './LoanTypeCard'
 import { ComparisonRow } from './ComparisonRow'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import { Text } from '@/components/ui/typography'
 
 export function LoanComparison() {
   const router = useRouter()
@@ -57,16 +58,16 @@ export function LoanComparison() {
       aria-label="VA Loan Comparison"
     >
       <div className="container mx-auto px-4">
-        {/* Section Header */}
+        {/* Section Header - simplified for scannability */}
         <div className={`text-center mb-12 transition-all duration-700 ${
           isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Why Choose a VA Loan?
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Compare VA loans with other mortgage options and see why they're the best choice for eligible veterans and service members.
-          </p>
+          <Text size="large" color="muted" className="max-w-3xl mx-auto">
+            See why VA loans beat conventional mortgages for veterans.
+          </Text>
         </div>
 
         {/* Comparison Table */}
@@ -109,9 +110,9 @@ export function LoanComparison() {
         <div className={`mt-12 text-center transition-all duration-700 delay-400 ${
           isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
-          <p className="text-gray-600 mb-6">
-            Ready to take advantage of your VA loan benefits?
-          </p>
+          <Text color="muted" className="mb-6">
+            Ready to use your VA loan benefits?
+          </Text>
           <button
             onClick={handleGetStarted}
             className="inline-flex items-center gap-2 bg-primary-900 text-white px-8 py-4 rounded-md font-semibold hover:bg-blue-900 transition-colors shadow-md"
@@ -135,9 +136,9 @@ export function LoanComparison() {
         <div className={`mt-8 text-center transition-all duration-700 delay-600 ${
           isInView ? 'opacity-100' : 'opacity-0'
         }`}>
-          <p className="text-xs text-gray-500 max-w-3xl mx-auto">
-            * VA loans have no set loan limit for borrowers with full entitlement. Loan limits may apply for borrowers with reduced entitlement.
-          </p>
+          <Text size="small" color="muted" className="max-w-3xl mx-auto">
+            * No loan limits with full entitlement. Limits may apply with reduced entitlement.
+          </Text>
         </div>
       </div>
     </section>

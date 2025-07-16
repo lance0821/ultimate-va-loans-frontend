@@ -1,0 +1,174 @@
+@layer utilities {
+  /* Content Typography Utilities */
+  
+  /* Optimal line length container */
+  .content-container {
+    max-width: 65ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .content-wide {
+    max-width: 75ch;
+  }
+  
+  .content-narrow {
+    max-width: 55ch;
+  }
+  
+  /* Paragraph spacing */
+  .content-prose > * + * {
+    margin-top: 1.5rem;
+  }
+  
+  .content-prose > h2 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .content-prose > h3 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .content-prose > h4 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* First paragraph after heading */
+  .content-prose :is(h1, h2, h3, h4, h5, h6) + p {
+    margin-top: 0.75rem;
+  }
+  
+  /* List spacing in content */
+  .content-prose :is(ul, ol) {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .content-prose :is(ul, ol) li {
+    margin-top: 0.5rem;
+  }
+  
+  /* Drop cap for articles */
+  .drop-cap::first-letter {
+    float: left;
+    font-size: 4rem;
+    line-height: 0.8;
+    font-weight: 700;
+    margin-right: 0.5rem;
+    margin-top: 0.25rem;
+    color: var(--color-primary);
+  }
+  
+  /* Pull quotes */
+  .pull-quote-left {
+    float: left;
+    width: 40%;
+    margin: 1.5rem 2rem 1.5rem 0;
+  }
+  
+  .pull-quote-right {
+    float: right;
+    width: 40%;
+    margin: 1.5rem 0 1.5rem 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .pull-quote-left,
+    .pull-quote-right {
+      float: none;
+      width: 100%;
+      margin: 2rem 0;
+    }
+  }
+  
+  /* Highlight styles */
+  .highlight-yellow {
+    background: linear-gradient(transparent 60%, var(--color-va-gold) 60%);
+    padding: 0 0.25rem;
+  }
+  
+  .highlight-blue {
+    background: linear-gradient(transparent 60%, oklch(from var(--color-primary) l c h / 0.2) 60%);
+    padding: 0 0.25rem;
+  }
+  
+  /* Scannable content helpers */
+  .scannable-section {
+    position: relative;
+    padding-left: 1rem;
+  }
+  
+  .scannable-section::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 4px;
+    background: oklch(from var(--color-primary) l c h / 0.2);
+    border-radius: 2px;
+  }
+  
+  /* Reading focus mode */
+  .reading-focus {
+    position: relative;
+  }
+  
+  .reading-focus::before,
+  .reading-focus::after {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    right: -1rem;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+  }
+  
+  .reading-focus::before {
+    bottom: 100%;
+  }
+  
+  .reading-focus::after {
+    top: 100%;
+  }
+  
+  /* Print styles */
+  @media print {
+    .content-prose {
+      font-size: 12pt;
+      line-height: 1.5;
+      color: black;
+    }
+    
+    .content-prose h1 { font-size: 24pt; }
+    .content-prose h2 { font-size: 18pt; }
+    .content-prose h3 { font-size: 14pt; }
+    
+    .no-print {
+      display: none !important;
+    }
+  }
+}
+
+/* Fix for webkit line clamp cross-browser support */
+@supports (-webkit-line-clamp: 2) {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

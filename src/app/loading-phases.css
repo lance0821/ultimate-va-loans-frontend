@@ -1,0 +1,118 @@
+/* Critical CSS - Inline this in <head> */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+.skeleton-image {
+  background: #f0f0f0;
+  position: relative;
+}
+
+.skeleton-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes skeleton-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Phase-based transitions */
+[data-loading-phase="0"] {
+  /* Critical - immediate */
+  animation: fadeIn 0.2s ease-out;
+}
+
+[data-loading-phase="1"] {
+  /* High priority */
+  animation: fadeIn 0.3s ease-out 0.1s both;
+}
+
+[data-loading-phase="2"] {
+  /* Medium priority */
+  animation: fadeIn 0.4s ease-out 0.2s both;
+}
+
+[data-loading-phase="3"] {
+  /* Low priority */
+  animation: fadeIn 0.5s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton,
+  .skeleton-image::after {
+    animation: none;
+  }
+  
+  [data-loading-phase] {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Layout stability */
+.contain-layout {
+  contain: layout style;
+}
+
+.aspect-hero {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-card {
+  aspect-ratio: 4 / 3;
+}
+
+.min-h-text-block {
+  min-height: 200px;
+}
+
+/* Font loading optimization */
+.font-swap {
+  font-display: swap;
+}
+
+/* Critical layout styles */
+.hero-section {
+  min-height: 600px;
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    min-height: 700px;
+  }
+}

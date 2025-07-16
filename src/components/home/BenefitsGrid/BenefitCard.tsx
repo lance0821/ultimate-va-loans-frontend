@@ -5,6 +5,7 @@ import { type LucideIcon } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { Text } from '@/components/ui/typography'
 
 interface BenefitCardProps {
   icon: LucideIcon
@@ -86,13 +87,16 @@ export function BenefitCard({
               {title}
             </h3>
             
-            {/* Description */}
-            <p className={cn(
-              "text-lg mb-6 flex-grow",
-              descriptionStyles[emphasis]
-            )}>
+            {/* Description - using shorter, scannable text */}
+            <Text 
+              size="large" 
+              className={cn(
+                "mb-6 flex-grow",
+                descriptionStyles[emphasis]
+              )}
+            >
               {description}
-            </p>
+            </Text>
             
             {/* CTA Button */}
             <Button 
@@ -136,13 +140,17 @@ export function BenefitCard({
             {title}
           </h3>
           
-          {/* Description */}
-          <p className={cn(
-            "text-lg mb-6 flex-grow leading-relaxed",
-            descriptionStyles[emphasis]
-          )}>
+          {/* Description - using scannable text with proper line height */}
+          <Text 
+            size="large" 
+            className={cn(
+              "mb-6 flex-grow",
+              descriptionStyles[emphasis]
+            )}
+            clamp={3}
+          >
             {description}
-          </p>
+          </Text>
           
           {/* CTA */}
           <div className="mt-auto">
