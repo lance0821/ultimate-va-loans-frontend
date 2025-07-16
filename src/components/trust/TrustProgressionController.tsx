@@ -132,21 +132,6 @@ export function TrustProgressionController({ children }: TrustProgressionControl
           <div>Elements: {state.visibleElements.length}</div>
         </div>
       )}
-      
-      {/* Trust stage indicator dots */}
-      <div className="trust-stage-indicator">
-        {trustProgressionStages.map((stage) => (
-          <div
-            key={stage.id}
-            className={`trust-stage-dot ${
-              state.currentStage === stage.id ? 'active' : ''
-            } ${
-              state.completedStages.includes(stage.id) ? 'completed' : ''
-            }`}
-            title={stage.name}
-          />
-        ))}
-      </div>
     </TrustProgressionContext.Provider>
   )
 }

@@ -130,39 +130,9 @@
   transition: opacity 0.3s ease;
 }
 
-/* Stage indicators */
-.trust-stage-indicator {
-  position: fixed;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 40;
-}
-
-.trust-stage-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--color-muted);
-  margin: 1rem 0;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.trust-stage-dot.active {
-  background: var(--color-va-gold);
-  transform: scale(1.5);
-}
-
-.trust-stage-dot.completed {
-  background: var(--color-va-blue);
-}
 
 /* Mobile optimizations */
 @media (max-width: 768px) {
-  .trust-stage-indicator {
-    display: none;
-  }
   
   .trust-element {
     transform: translateY(10px);

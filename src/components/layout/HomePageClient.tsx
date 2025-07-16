@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 import { Section } from '@/components/layout/Section'
-import { ScrollIndicator } from '@/components/layout/ScrollIndicator'
 import { Heading } from '@/components/ui/heading'
 // Import content components from PRP-063
 import { ContentSection } from '@/components/content/ContentSection'
@@ -67,19 +66,11 @@ export function HomePageClient() {
                 className="section-spacing-first"
                 aria-label="VA Loan Benefits"
               >
-                <Heading as="h2" level="h2" align="center" className="mb-4">
-                  Your VA Loan Journey Starts Here
-                </Heading>
-                <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">
-                  Three simple steps to homeownership with your VA loan benefits
-                </p>
                 <BenefitsGrid />
               </Section>
             </ContentSection>
           </div>
         </ContentPhaseLoader>
-        {/* Visual separator */}
-        <VisualBreak type="dots" spacing="normal" />
         
         {/* Phase 1: Above-fold (0.5-1.5s) - Trust Indicators */}
         <ContentPhaseLoader
@@ -208,8 +199,6 @@ export function HomePageClient() {
             </ContentSection>
           </div>
         </ContentPhaseLoader>
-        {/* Scroll Progress Indicator */}
-        <ScrollIndicator showProgress />
       </div>
     </TrustProgressionController>
   )

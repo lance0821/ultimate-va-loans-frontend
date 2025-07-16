@@ -32,7 +32,9 @@ export function Header() {
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-4">
-              <MobileNav />
+              <div className="lg:hidden">
+                <MobileNav />
+              </div>
               <VALogo />
             </div>
 
