@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { ctaOptions, trustIndicators, valueProps } from './cta-data'
 import { ArrowRight, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
+import { Text } from '@/components/ui/typography'
 
 export function FinalCTA() {
   const { ref, inView } = useInView<HTMLDivElement>({
@@ -43,7 +44,7 @@ export function FinalCTA() {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Headline */}
+          {/* Headline - shorter, more direct */}
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
             Ready to Use Your VA Loan Benefit?
           </h2>
@@ -58,11 +59,10 @@ export function FinalCTA() {
             ))}
           </div>
           
-          {/* Subheadline */}
-          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-            Join over 50,000 veterans who've achieved homeownership with our help. 
-            Start your journey today with no obligation.
-          </p>
+          {/* Subheadline - simplified for better scanning */}
+          <Text size="large" className="text-white/90 mb-10 max-w-2xl mx-auto">
+            Join 50,000+ veterans. Start today with no obligation.
+          </Text>
           
           {/* Primary CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -135,15 +135,14 @@ export function FinalCTA() {
             ))}
           </div>
           
-          {/* Operating Hours */}
-          <div className="mt-8 text-white/70 text-sm">
-            <p>Available Monday-Friday 8am-8pm EST, Saturday 9am-5pm EST</p>
-            <p className="mt-2">
-              Questions? Email us at{' '}
-              <a href="mailto:support@vahomeloans.com" className="underline hover:text-white">
-                support@vahomeloans.com
-              </a>
-            </p>
+          {/* Operating Hours - streamlined */}
+          <div className="mt-8">
+            <Text size="small" className="text-white/70">
+              Mon-Fri 8am-8pm EST, Sat 9am-5pm EST
+            </Text>
+            <Text size="small" className="text-white/70 mt-2">
+              Questions? <a href="mailto:support@vahomeloans.com" className="underline hover:text-white">Email us</a>
+            </Text>
           </div>
         </div>
       </div>

@@ -1,4 +1,15 @@
 @import "tailwindcss";
+@import "../styles/visual-hierarchy.css";
+@import "../styles/hero-overrides.css";
+@import "../styles/section-backgrounds.css";
+@import "../styles/mobile-visual-hierarchy.css";
+@import "../styles/cta-animations.css";
+@import "../styles/forms.css";
+@import "../styles/trust-animations.css";
+@import "../styles/typography.css";
+@import "../styles/content-scannability.css";
+@import "./loading-phases.css";
+@import "../styles/accessibility.css";
 
 @theme {
   /* ======================================================================== */
@@ -985,4 +996,60 @@
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+/* Trust Signal Styles */
+@layer components {
+  /* Trust badge hover effects */
+  .trust-badge-glow {
+    position: relative;
+  }
+  
+  .trust-badge-glow::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    background: radial-gradient(circle, var(--color-va-gold) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border-radius: 50%;
+  }
+  
+  .trust-badge-glow:hover::before {
+    opacity: 0.3;
+  }
+  
+  /* Star rating styles */
+  .trust-star-filled {
+    fill: var(--color-va-gold);
+    color: var(--color-va-gold);
+  }
+  
+  .trust-star-empty {
+    fill: transparent;
+    color: oklch(0.5 0.02 250);
+  }
+  
+  /* Trust verification modal backdrop */
+  .trust-verification-backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+}
+
+/* Trust animation keyframes */
+@keyframes trust-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+.animate-trust-pulse {
+  animation: trust-pulse 4s ease-in-out infinite;
 }

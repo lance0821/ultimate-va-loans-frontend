@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+/* CTA-specific animations extending visual hierarchy system */
+@layer utilities {
+  /* Enhanced Primary CTA Animation */
+  @keyframes cta-glow {
+    0%, 100% {
+      box-shadow: 
+        0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+    50% {
+      box-shadow: 
+        0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1),
+        0 0 0 3px rgb(from var(--color-va-gold) r g b / 0.3);
+    }
+  }
+
+  @keyframes cta-success {
+    0% { 
+      transform: scale(1);
+      background-color: var(--color-va-gold);
+    }
+    50% { 
+      transform: scale(0.95);
+      background-color: rgb(from var(--color-success) r g b / 0.9);
+    }
+    100% { 
+      transform: scale(1);
+      background-color: var(--color-success);
+    }
+  }
+
+  @keyframes cta-shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
+  }
+
+  /* Primary CTA Enhanced Styles */
+  .cta-primary-enhanced {
+    position: relative;
+    overflow: hidden;
+    animation: cta-glow 3s ease-in-out infinite;
+    
+    /* Shine effect on hover - extends btn-va-primary pattern */
+    &::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      bottom: -2px;
+      left: -2px;
+      background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgb(from var(--color-va-gold) r g b / 0.3) 50%,
+        transparent 70%
+      );
+      transform: translateX(-100%);
+      transition: transform 0.6s;
+      z-index: -1;
+    }
+    
+    &:hover::after {
+      transform: translateX(100%);
+    }
+    
+    /* Icon animation */
+    .cta-icon {
+      transition: transform var(--vh-transition-base) ease;
+    }
+    
+    &:hover .cta-icon {
+      transform: translateX(4px);
+    }
+    
+    /* Loading state override */
+    &[data-loading="true"] {
+      animation: none;
+      cursor: wait;
+    }
+    
+    /* Success state */
+    &[data-success="true"] {
+      animation: cta-success 0.5s ease forwards;
+    }
+    
+    /* Error state */
+    &[data-error="true"] {
+      animation: cta-shake 0.5s ease;
+      border-color: var(--color-destructive);
+    }
+  }
+
+  /* Secondary CTA Subtle Enhancement */
+  .cta-secondary-enhanced {
+    position: relative;
+    transition: all var(--vh-transition-base) ease;
+    
+    /* Border gradient on hover */
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(
+        135deg,
+        var(--color-va-blue),
+        var(--color-va-gold)
+      );
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity var(--vh-transition-base);
+      z-index: -1;
+    }
+    
+    &:hover::before {
+      opacity: 1;
+    }
+    
+    /* Inner content stays above gradient */
+    & > * {
+      position: relative;
+      background: var(--background);
+      border-radius: inherit;
+    }
+  }
+
+  /* Tertiary CTA Underline Animation */
+  .cta-tertiary-enhanced {
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: currentColor;
+      transition: width var(--vh-transition-fast) ease;
+    }
+    
+    &:hover::after {
+      width: 100%;
+    }
+  }
+
+  /* CTA Stack Layout Utilities */
+  .cta-stack {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-stack-vertical {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-stack-center {
+    justify-content: center;
+  }
+
+  /* Mobile Responsive Stack */
+  @media (max-width: 640px) {
+    .cta-stack:not(.cta-stack-no-mobile-stack) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+    
+    .cta-stack > * {
+      width: 100%;
+    }
+  }
+
+  /* Loading Spinner */
+  .cta-spinner {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* High Contrast Mode Support */
+  @media (prefers-contrast: high) {
+    .cta-primary-enhanced {
+      border: 2px solid currentColor;
+      animation: none;
+    }
+    
+    .cta-secondary-enhanced::before {
+      display: none;
+    }
+  }
+
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    .cta-primary-enhanced,
+    .cta-secondary-enhanced,
+    .cta-tertiary-enhanced {
+      animation: none;
+      
+      &::before,
+      &::after {
+        transition: none;
+      }
+    }
+    
+    .cta-icon {
+      transition: none;
+    }
+  }
+}

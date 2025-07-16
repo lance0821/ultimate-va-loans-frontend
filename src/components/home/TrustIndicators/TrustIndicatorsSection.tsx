@@ -7,6 +7,7 @@ import { trustIndicators } from './trust-indicators.data'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Users } from 'lucide-react'
 import Link from 'next/link'
+import { Text } from '@/components/ui/typography'
 
 export function TrustIndicatorsSection() {
   const { ref, inView } = useInView<HTMLDivElement>({
@@ -52,15 +53,14 @@ export function TrustIndicatorsSection() {
       aria-label="Why Florida Veterans Trust Us"
     >
       <div className="container mx-auto px-4">
-        {/* Section Header */}
+        {/* Section Header - simplified for better scannability */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Why Florida Veterans Trust Us
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Big enough to deliver, small enough to care. We're your local VA loan experts 
-            who treat every veteran like family.
-          </p>
+          <Text size="large" color="muted" className="max-w-3xl mx-auto">
+            Big enough to deliver. Small enough to care. Your local VA loan experts.
+          </Text>
         </div>
 
         {/* Trust Indicators Grid */}
@@ -77,9 +77,9 @@ export function TrustIndicatorsSection() {
 
         {/* CTA Section */}
         <div className="text-center space-y-4">
-          <p className="text-gray-600 mb-6">
-            Ready to experience the difference personal service makes?
-          </p>
+          <Text color="muted" className="mb-6">
+            Ready to experience personal service?
+          </Text>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/team">
@@ -109,9 +109,9 @@ export function TrustIndicatorsSection() {
 
         {/* Updated Disclaimer */}
         <div className="mt-8 text-center">
-          <p className="text-sm text-gray-500">
-            *Serving all of Florida since 2009. Statistics current as of {new Date().getFullYear()}.
-          </p>
+          <Text size="small" color="muted">
+            *Serving Florida since 2009. Stats current as of {new Date().getFullYear()}.
+          </Text>
         </div>
       </div>
     </section>

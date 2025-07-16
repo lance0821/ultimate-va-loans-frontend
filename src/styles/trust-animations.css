@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* Trust badge reveal animations */
+@keyframes trust-badge-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+    filter: blur(4px);
+  }
+  50% {
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes trust-badge-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 oklch(from var(--color-va-gold) l c h / 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px oklch(from var(--color-va-gold) l c h / 0);
+  }
+}
+
+@keyframes trust-counter {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Progressive reveal classes */
+.trust-element {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--vh-transition-normal) ease-out;
+}
+
+.trust-element.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.trust-element.visible.priority-1 {
+  transition-delay: 0ms;
+}
+
+.trust-element.visible.priority-2 {
+  transition-delay: 200ms;
+}
+
+.trust-element.visible.priority-3 {
+  transition-delay: 400ms;
+}
+
+/* Trust badge specific styles */
+.trust-badge {
+  opacity: 0;
+  animation: trust-badge-reveal 0.6s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.trust-badge.animate {
+  animation-play-state: running;
+}
+
+.trust-badge:hover {
+  animation: trust-badge-pulse 2s ease-in-out infinite;
+}
+
+/* Testimonial animations */
+@keyframes testimonial-slide {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.testimonial-highlight {
+  opacity: 0;
+  animation: testimonial-slide 0.8s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.testimonial-highlight.animate {
+  animation-play-state: running;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .trust-element,
+  .trust-badge,
+  .testimonial-highlight {
+    animation: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .trust-element.visible {
+    transform: none;
+  }
+}
+
+/* Trust progress indicator */
+.trust-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--color-va-blue) 0%,
+    var(--color-va-blue) var(--progress, 0%),
+    transparent var(--progress, 0%)
+  );
+  z-index: 100;
+  transition: opacity 0.3s ease;
+}
+
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  
+  .trust-element {
+    transform: translateY(10px);
+  }
+  
+  @keyframes trust-badge-reveal {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+      filter: none;
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

@@ -1,0 +1,179 @@
+@layer components {
+  /* Hero Section Specific Overrides */
+  .hero-gradient-bg {
+    @apply relative overflow-hidden;
+    background: linear-gradient(
+      135deg,
+      var(--color-va-blue) 0%,
+      oklch(25.3% 0.133 254.6) 50%,
+      oklch(20.3% 0.133 254.6) 100%
+    );
+  }
+  
+  .hero-gradient-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='white' fill-opacity='0.05'%3E%3Cpath d='M0 0h20v20H0z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 20px 20px;
+  }
+  
+  .hero-gradient-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
+  }
+  
+  /* Hero Typography with Maximum Impact */
+  .hero-headline-primary {
+    font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .hero-headline-accent {
+    color: var(--color-va-gold);
+    display: block;
+    margin-top: 0.25em;
+  }
+  
+  /* Trust Badge Positioning */
+  .hero-trust-position {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: var(--vh-z-raised);
+  }
+  
+  @media (max-width: 768px) {
+    .hero-trust-position {
+      position: static;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  /* CTA Glow Effect */
+  @keyframes hero-cta-glow {
+    0%, 100% { 
+      box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 0 20px rgba(var(--color-va-gold), 0.3);
+    }
+    50% { 
+      box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.15),
+        0 0 30px rgba(var(--color-va-gold), 0.5);
+    }
+  }
+  
+  .hero-cta-primary {
+    animation: hero-cta-glow 2s ease-in-out infinite;
+  }
+  
+  /* Responsive Hero Height */
+  .hero-container {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-container {
+      min-height: 100vh;
+      padding-top: 4rem; /* Account for mobile nav */
+    }
+  }
+
+  /* Add subtle pattern overlay */
+  .hero-gradient-bg::before {
+    content: '';
+    @apply absolute inset-0 opacity-5;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  /* Hero container adjustments */
+  .hero-container {
+    @apply flex items-center justify-center;
+  }
+  
+  /* Simplified animations - Single fade-in */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Hero Benefits Styles */
+  .hero-benefits {
+    @apply text-left max-w-xl mx-auto lg:mx-0;
+  }
+  
+  .hero-benefits li {
+    @apply transition-all duration-300 hover:translate-x-1;
+  }
+  
+  /* Hero Actions Responsive */
+  .hero-actions {
+    @apply w-full lg:w-auto;
+  }
+  
+  /* Single CTA styling */
+  .hero-actions > *:only-child {
+    @apply mx-auto lg:mx-0;
+  }
+  
+  /* Hero Trust Bar */
+  .hero-trust-bar {
+    @apply flex flex-wrap items-center gap-3;
+  }
+  
+  .hero-trust-item {
+    @apply flex items-center;
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .hero-gradient-bg {
+      @apply min-h-screen;
+    }
+    
+    .hero-trust-bar {
+      @apply justify-center;
+    }
+    
+    .hero-trust-item:not(.hero-trust-mobile) {
+      @apply hidden sm:flex;
+    }
+  }
+  
+  /* Hero Meta Section */
+  .hero-meta {
+    @apply relative mt-8;
+  }
+}

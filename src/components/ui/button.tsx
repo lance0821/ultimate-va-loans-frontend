@@ -27,30 +27,48 @@ const buttonVariants = cva(
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
         icon: "size-9",
       },
+      hierarchy: {
+        primary: "min-h-[48px] lg:min-h-[60px] text-base lg:text-lg font-bold shadow-lg hover:shadow-xl animate-subtle-pulse vh-focus-visible",
+        secondary: "min-h-[40px] lg:min-h-[48px] font-semibold vh-focus-visible",
+        tertiary: "underline font-medium p-0 h-auto vh-focus-visible",
+        default: "", // No additional styles
+      },
+      touchOptimized: {
+        true: "touch-target active:scale-[0.98] transition-transform",
+        false: "",
+      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
+      hierarchy: "default",
+      touchOptimized: false,
     },
   }
 )
+
+export type ButtonProps = React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean
+    hierarchy?: "primary" | "secondary" | "tertiary" | "default"
+    touchOptimized?: boolean
+  }
 
 function Button({
   className,
   variant,
   size,
+  hierarchy,
+  touchOptimized,
   asChild = false,
   ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-  }) {
+}: ButtonProps) {
   const Comp = asChild ? Slot : "button"
 
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size, hierarchy, touchOptimized, className }))}
       {...props}
     />
   )
