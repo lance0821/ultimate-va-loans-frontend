@@ -11,6 +11,7 @@ export interface VACurrencyInputProps extends Omit<React.InputHTMLAttributes<HTM
   decimals?: number
   locale?: string
   currency?: string
+  description?: string
 }
 
 export const VACurrencyInput = React.forwardRef<HTMLInputElement, VACurrencyInputProps>(

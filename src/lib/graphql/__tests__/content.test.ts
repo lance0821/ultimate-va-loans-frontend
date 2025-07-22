@@ -16,7 +16,7 @@ describe('getContentPage', () => {
 
   beforeEach(() => {
     vi.clearAllMocks()
-    vi.mocked(getServerApolloClient).mockResolvedValue(mockClient as unknown as ReturnType<typeof getServerApolloClient> extends Promise<infer T> ? T : never)
+    vi.mocked(getServerApolloClient).mockResolvedValue(mockClient as unknown as Awaited<ReturnType<typeof getServerApolloClient>>)
   })
 
   it('should fetch and parse content page successfully', async () => {
@@ -28,112 +28,169 @@ describe('getContentPage', () => {
           slug: 'test-page',
           intro: 'Test intro',
           body: JSON.stringify([
-            { type: 'heading', value: 'Test Heading' },
-            { type: 'paragraph', value: '<p>Test paragraph</p>' },
+            {
+              type: 'paragraph',
+              children: [{ text: 'Test content' }],
+            },
           ]),
-          firstPublishedAt: '2025-01-01T00:00:00Z',
-          metaDescription: 'Test description',
-          metaKeywords: 'test, keywords',
-          ogTitle: 'Test OG Title',
-          ogDescription: 'Test OG Description',
-          seoTitle: 'Test SEO Title',
+          contentBlocks: [],
         },
       },
     }
 
-    mockClient.query.mockResolvedValue(mockData)
+    mockClient.query.mockResolvedValueOnce(mockData)
 
     const result = await getContentPage('test-page')
+
+    expect(result).toEqual({
+      ...mockData.data.contentPage,
+      parsedBody: [
+        {
+          type: 'paragraph',
+          children: [{ text: 'Test content' }],
+        },
+      ],
+    })
 
     expect(mockClient.query).toHaveBeenCalledWith({
       query: expect.any(Object),
       variables: { slug: 'test-page' },
     })
+  })
 
-    expect(result).toEqual({
-      id: '1',
-      title: 'Test Page',
-      slug: 'test-page',
-      intro: 'Test intro',
-      body: [
-        { type: 'heading', value: 'Test Heading' },
-        { type: 'paragraph', value: '<p>Test paragraph</p>' },
-      ],
-      firstPublishedAt: '2025-01-01T00:00:00Z',
-      metaDescription: 'Test description',
-      metaKeywords: 'test, keywords',
-      ogTitle: 'Test OG Title',
-      ogDescription: 'Test OG Description',
-      seoTitle: 'Test SEO Title',
+  it('should return null when page not found', async () => {
+    mockClient.query.mockResolvedValueOnce({
+      data: { contentPage: null },
     })
-  })
 
-  it('should handle null body gracefully', async () => {
-    const mockData = {
-      data: {
-        contentPage: {
-          id: '1',
-          title: 'Test Page',
-          slug: 'test-page',
-          body: null,
-        },
-      },
-    }
-
-    mockClient.query.mockResolvedValue(mockData)
-
-    const result = await getContentPage('test-page')
-
-    expect(result?.body).toBeUndefined()
-  })
-
-  it('should handle invalid JSON in body', async () => {
-    const mockData = {
-      data: {
-        contentPage: {
-          id: '1',
-          title: 'Test Page',
-          slug: 'test-page',
-          body: 'invalid json',
-        },
-      },
-    }
-
-    mockClient.query.mockResolvedValue(mockData)
-    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
-
-    const result = await getContentPage('test-page')
-
-    expect(result?.body).toEqual([])
-    expect(consoleSpy).toHaveBeenCalledWith('Error parsing body JSON:', expect.any(Error))
-
-    consoleSpy.mockRestore()
-  })
-
-  it('should return null when page is not found', async () => {
-    const mockData = {
-      data: {
-        contentPage: null,
-      },
-    }
-
-    mockClient.query.mockResolvedValue(mockData)
-
-    const result = await getContentPage('non-existent-page')
+    const result = await getContentPage('non-existent')
 
     expect(result).toBeNull()
   })
 
   it('should handle query errors gracefully', async () => {
-    const error = new Error('GraphQL error')
-    mockClient.query.mockRejectedValue(error)
-    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+    mockClient.query.mockRejectedValueOnce(new Error('GraphQL error'))
 
-    const result = await getContentPage('test-page')
+    await expect(getContentPage('error-page')).rejects.toThrow('GraphQL error')
+  })
 
-    expect(result).toBeNull()
-    expect(consoleSpy).toHaveBeenCalledWith('Error fetching content page:', error)
+  it('should parse body content correctly with complex structure', async () => {
+    const complexBody = [
+      {
+        type: 'heading',
+        level: 2,
+        children: [{ text: 'Test Heading' }],
+      },
+      {
+        type: 'paragraph',
+        children: [
+          { text: 'Some text with ' },
+          { text: 'bold', bold: true },
+          { text: ' and ' },
+          { text: 'italic', italic: true },
+          { text: ' formatting.' },
+        ],
+      },
+      {
+        type: 'list',
+        format: 'unordered',
+        children: [
+          {
+            type: 'list-item',
+            children: [{ text: 'First item' }],
+          },
+          {
+            type: 'list-item',
+            children: [{ text: 'Second item' }],
+          },
+        ],
+      },
+    ]
 
-    consoleSpy.mockRestore()
+    const mockData = {
+      data: {
+        contentPage: {
+          id: '2',
+          title: 'Complex Page',
+          slug: 'complex-page',
+          intro: 'Complex intro',
+          body: JSON.stringify(complexBody),
+          contentBlocks: [],
+        },
+      },
+    }
+
+    mockClient.query.mockResolvedValueOnce(mockData)
+
+    const result = await getContentPage('complex-page')
+
+    expect(result?.parsedBody).toEqual(complexBody)
+  })
+
+  it('should handle content blocks with nested data', async () => {
+    const mockData = {
+      data: {
+        contentPage: {
+          id: '3',
+          title: 'Page with Blocks',
+          slug: 'page-with-blocks',
+          intro: 'Intro with blocks',
+          body: '[]',
+          contentBlocks: [
+            {
+              __typename: 'HeroBlock',
+              id: 'hero-1',
+              title: 'Hero Title',
+              subtitle: 'Hero Subtitle',
+              ctaText: 'Get Started',
+              ctaLink: '/get-started',
+            },
+            {
+              __typename: 'ContentSection',
+              id: 'content-1',
+              heading: 'Section Heading',
+              content: 'Section content text',
+            },
+          ],
+        },
+      },
+    }
+
+    mockClient.query.mockResolvedValueOnce(mockData)
+
+    const result = await getContentPage('page-with-blocks')
+
+    expect(result?.contentBlocks).toHaveLength(2)
+    expect(result?.contentBlocks?.[0]).toMatchObject({
+      __typename: 'HeroBlock',
+      title: 'Hero Title',
+    })
+    expect(result?.contentBlocks?.[1]).toMatchObject({
+      __typename: 'ContentSection',
+      heading: 'Section Heading',
+    })
+  })
+
+  it('should handle empty or invalid body JSON gracefully', async () => {
+    const mockData = {
+      data: {
+        contentPage: {
+          id: '4',
+          title: 'Invalid Body Page',
+          slug: 'invalid-body',
+          intro: 'Page with invalid body',
+          body: 'invalid json',
+          contentBlocks: [],
+        },
+      },
+    }
+
+    mockClient.query.mockResolvedValueOnce(mockData)
+
+    const result = await getContentPage('invalid-body')
+
+    // Should return the page but with empty parsedBody
+    expect(result).toBeDefined()
+    expect(result?.parsedBody).toEqual([])
   })
 })

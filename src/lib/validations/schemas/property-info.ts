@@ -1,6 +1,13 @@
 import { z } from 'zod'
 
 export const propertyInfoSchema = z.object({
+  // Loan Purpose (for quote form)
+  loanPurpose: z.enum([
+    'purchase',
+    'refinance',
+    'cashout'
+  ]).optional(),
+  
   // Property Type
   propertyType: z.enum([
     'single_family',
@@ -17,6 +24,13 @@ export const propertyInfoSchema = z.object({
     'second_home',
     'investment'
   ]),
+  
+  // Property Use (alternate name for quote form)
+  propertyUse: z.enum([
+    'primary_residence',
+    'second_home',
+    'investment'
+  ]).optional(),
   
   // Property Details
   purchasePrice: z
@@ -110,6 +124,18 @@ export const propertyInfoSchema = z.object({
   loanAmount: z
     .number()
     .min(0, 'Loan amount cannot be negative')
+    .optional(),
+    
+  // Additional fields for quote form
+  estimatedHomeValue: z
+    .number()
+    .min(50000, 'Home value must be at least $50,000')
+    .max(5000000, 'Home value seems too high. Please verify.')
+    .optional(),
+    
+  currentLoanBalance: z
+    .number()
+    .min(0, 'Loan balance cannot be negative')
     .optional(),
 })
 
