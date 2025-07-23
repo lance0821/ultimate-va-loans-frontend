@@ -128,7 +128,6 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
         ref={ref}
         variant={getVariant()}
         hierarchy={hierarchy}
-        touchOptimized
         className={cn(
           hierarchyClasses[hierarchy],
           showSuccess && "cta-success",
