@@ -26,9 +26,10 @@ const MILITARY_BRANCHES = [
 const SERVICE_STATUS_OPTIONS = [
   { value: 'active_duty', label: 'Active Duty' },
   { value: 'veteran', label: 'Veteran' },
-  { value: 'reserve', label: 'Reserve' },
+  { value: 'reserves', label: 'Reserve' },
   { value: 'national_guard', label: 'National Guard' },
-  { value: 'retired', label: 'Retired' },
+  { value: 'surviving_spouse', label: 'Surviving Spouse' },
+  { value: 'other', label: 'Other' },
 ]
 
 const DISABILITY_RATINGS = [
@@ -173,8 +174,8 @@ export function MilitaryStep() {
                   <FormLabel>VA Disability Rating</FormLabel>
                   <FormControl>
                     <Select
-                      value={field.value}
-                      onValueChange={field.onChange}
+                      value={field.value?.toString() || ''}
+                      onValueChange={(value) => field.onChange(parseInt(value, 10))}
                     >
                       <SelectTrigger className="min-h-[44px]">
                         <SelectValue placeholder="Select your rating" />

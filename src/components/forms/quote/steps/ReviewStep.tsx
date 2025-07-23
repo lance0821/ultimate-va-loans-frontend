@@ -88,11 +88,11 @@ export function ReviewStep() {
                 <>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Purchase Price:</span>
-                    <span className="font-medium">{formatCurrency(formData.purchasePrice)}</span>
+                    <span className="font-medium">{formatCurrency(formData.purchasePrice || 0)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Down Payment:</span>
-                    <span className="font-medium">{formatCurrency(formData.downPaymentAmount)}</span>
+                    <span className="font-medium">{formatCurrency(formData.downPaymentAmount || 0)}</span>
                   </div>
                 </>
               )}

@@ -107,7 +107,6 @@ export function PersonalStep() {
                     type="email"
                     placeholder="john.doe@email.com"
                     autoComplete="email"
-                    description="We'll send your quote details to this email"
                   />
                 </FormControl>
                 <FormMessage />

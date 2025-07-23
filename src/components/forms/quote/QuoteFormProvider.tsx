@@ -4,46 +4,94 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 import { useForm, UseFormReturn } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { personalInfoSchema } from '@/lib/validations/schemas/personal-info'
-import { militaryServiceSchema } from '@/lib/validations/schemas/military-service'
-import { propertyInfoSchema } from '@/lib/validations/schemas/property-info'
-import { financialInfoSchema } from '@/lib/validations/schemas/financial-info'
 import { encryptFormData, decryptFormData } from '@/lib/utils/encryption'
 
 // Combine all schemas for the complete form
 const quoteFormSchema = z.object({
-  // Step 1: Loan Type
-  loanPurpose: propertyInfoSchema.shape.loanPurpose,
+  // Step 1: Loan Type - Required in quote form
+  loanPurpose: z.enum(['purchase', 'refinance', 'cashout']),
   
   // Step 2: Property
-  propertyType: propertyInfoSchema.shape.propertyType,
-  propertyUse: propertyInfoSchema.shape.propertyUse,
-  propertyZipCode: propertyInfoSchema.shape.propertyZipCode,
-  propertyState: propertyInfoSchema.shape.propertyState,
-  purchasePrice: propertyInfoSchema.shape.purchasePrice,
-  downPaymentAmount: propertyInfoSchema.shape.downPaymentAmount,
-  estimatedHomeValue: propertyInfoSchema.shape.estimatedHomeValue,
-  currentLoanBalance: propertyInfoSchema.shape.currentLoanBalance,
+  propertyType: z.enum([
+    'single_family',
+    'condo',
+    'townhouse',
+    'multi_family',
+    'manufactured',
+    'other'
+  ]),
+  propertyUse: z.enum(['primary_residence', 'second_home', 'investment']),
+  propertyZipCode: z.string().regex(/^\d{5}(-\d{4})?$/, 'Please enter a valid ZIP code'),
+  propertyState: z.string().length(2, 'Please use 2-letter state code').optional(),
+  purchasePrice: z.number()
+    .min(50000, 'Purchase price must be at least $50,000')
+    .max(5000000, 'Purchase price seems too high. Please verify.')
+    .optional(),
+  downPaymentAmount: z.number()
+    .min(0, 'Down payment cannot be negative')
+    .optional(),
+  estimatedHomeValue: z.number()
+    .min(50000, 'Home value must be at least $50,000')
+    .max(5000000, 'Home value seems too high. Please verify.')
+    .optional(),
+  currentLoanBalance: z.number()
+    .min(0, 'Loan balance cannot be negative')
+    .optional(),
   
   // Step 3: Military
-  branch: militaryServiceSchema.shape.branch,
-  serviceStatus: militaryServiceSchema.shape.serviceStatus,
-  hasVADisability: militaryServiceSchema.shape.hasVADisability,
-  disabilityRating: militaryServiceSchema.shape.disabilityRating,
-  hasUsedVALoanBefore: militaryServiceSchema.shape.hasUsedVALoanBefore,
+  branch: z.enum([
+    'army',
+    'navy',
+    'air_force',
+    'marines',
+    'coast_guard',
+    'space_force'
+  ]),
+  serviceStatus: z.enum([
+    'active_duty',
+    'veteran',
+    'national_guard',
+    'reserves',
+    'surviving_spouse',
+    'other'
+  ]),
+  hasVADisability: z.boolean(),
+  disabilityRating: z.number()
+    .min(0, 'Rating must be between 0 and 100')
+    .max(100, 'Rating must be between 0 and 100')
+    .optional(),
+  hasUsedVALoanBefore: z.boolean(),
   
   // Step 4: Financial
-  creditScoreRange: financialInfoSchema.shape.creditScoreRange,
-  annualIncome: financialInfoSchema.shape.annualIncome,
-  employmentStatus: financialInfoSchema.shape.employmentStatus,
-  monthlyDebtPayments: financialInfoSchema.shape.monthlyDebtPayments,
+  creditScoreRange: z.enum(['excellent', 'good', 'fair', 'poor', 'unknown']).optional(),
+  annualIncome: z.number()
+    .min(0, 'Income cannot be negative')
+    .max(10000000, 'Income seems too high. Please verify.'),
+  employmentStatus: z.enum([
+    'employed_full_time',
+    'employed_part_time',
+    'self_employed',
+    'military_active',
+    'retired',
+    'unemployed',
+    'other'
+  ]),
+  monthlyDebtPayments: z.number()
+    .min(0, 'Debt payments cannot be negative'),
   
   // Step 5: Personal
-  firstName: personalInfoSchema.shape.firstName,
-  lastName: personalInfoSchema.shape.lastName,
-  email: personalInfoSchema.shape.email,
-  phone: personalInfoSchema.shape.phone,
-  preferredContactMethod: personalInfoSchema.shape.preferredContactMethod,
+  firstName: z.string()
+    .min(1, 'First name is required')
+    .max(50, 'First name is too long'),
+  lastName: z.string()
+    .min(1, 'Last name is required')
+    .max(50, 'Last name is too long'),
+  email: z.string()
+    .email('Please enter a valid email address')
+    .max(100, 'Email is too long'),
+  phone: z.string()
+    .regex(/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/, 'Phone must be in format: 555-123-4567'),
+  preferredContactMethod: z.enum(['email', 'phone', 'both']),
   
   // Meta
   agreedToTerms: z.boolean(),
@@ -194,7 +242,6 @@ export function QuoteFormProvider({ children, onSubmit }: QuoteFormProviderProps
       
       // Track conversion
       if (typeof window !== 'undefined' && 'gtag' in window) {
-        // @ts-expect-error - gtag is added by Google Analytics
         window.gtag('event', 'generate_lead', {
           currency: 'USD',
           value: 1000, // Estimated lead value
