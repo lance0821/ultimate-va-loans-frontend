@@ -66,7 +66,6 @@ export function MobileCTA({
         className={className} 
         {...props} 
         onClick={handleClick}
-        touchOptimized={false}
       >
         {children}
       </CTAButton>
@@ -78,7 +77,6 @@ export function MobileCTA({
       <CTAButton
         {...props}
         onClick={handleClick}
-        touchOptimized
         className={cn(
           "mobile-cta w-full",
           "text-base md:text-lg", // Ensure readable text
