@@ -50,3 +50,11 @@ export const US_STATES = [
   { value: 'WI', label: 'Wisconsin' },
   { value: 'WY', label: 'Wyoming' },
 ]
+
+// Also export as STATE_CODES for compatibility with the PRP
+export const STATE_CODES = US_STATES.map(state => ({
+  code: state.value,
+  name: state.label
+}))
+
+export type StateCode = typeof STATE_CODES[number]['code']

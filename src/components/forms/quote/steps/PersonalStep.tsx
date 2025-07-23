@@ -1,161 +1,192 @@
 'use client'
 
-import { useState, ChangeEvent } from 'react'
 import { Button } from '@/components/ui/button'
 import { useQuoteForm } from '../QuoteFormProvider'
-import { FormInput } from '@/components/forms/FormInput'
-import { PhoneInput } from '@/components/forms/PhoneInput'
-import { useFormValidation } from '@/hooks/use-form-validation'
-import { personalSchema } from '@/lib/validations/quote-form'
+import { VAFormInput } from '@/components/forms/fields/VAFormInput'
+import { VAPhoneInput } from '@/components/forms/fields/VAPhoneInput'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Info } from 'lucide-react'
 import { SecurityIndicator } from '@/components/trust/SecurityIndicator'
 import { securityContexts } from '@/lib/security-messages'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
+
+const CONTACT_PREFERENCES = [
+  { value: 'email', label: 'Email' },
+  { value: 'phone', label: 'Phone' },
+  { value: 'both', label: 'Email or Phone' },
+]
 
 export function PersonalStep() {
-  const { formData, updateFormData, nextStep, prevStep } = useQuoteForm()
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const { form, nextStep, previousStep } = useQuoteForm()
   
-  // Initialize form values
-  const [values, setValues] = useState({
-    first_name: formData.first_name || '',
-    last_name: formData.last_name || '',
-    email: formData.email || '',
-    phone: formData.phone || '',
-  })
-  
-  // Initialize validation
-  const {
-    errors,
-    touched,
-    validateForm,
-    handleBlur,
-    handleChange,
-    getFieldError,
-  } = useFormValidation(personalSchema)
-  
-  // Update form values
-  const handleFieldChange = (field: string) => (value: string | ChangeEvent<HTMLInputElement>) => {
-    const newValue = typeof value === 'string' ? value : value.target.value
-    setValues(prev => ({ ...prev, [field]: newValue }))
-    handleChange(field)?.(newValue)
-  }
-  
-  // Handle blur events
-  const handleFieldBlur = (field: string) => () => {
-    handleBlur(field)?.(values[field as keyof typeof values])
-  }
-  
-  // Handle form submission
-  const handleSubmit = async () => {
-    setIsSubmitting(true)
+  const handleContinue = async () => {
+    // Validate personal fields
+    const isValid = await form.trigger(['firstName', 'lastName', 'email', 'phone', 'preferredContactMethod'])
     
-    try {
-      // Validate all fields
-      const isValid = await validateForm(values)
-      
-      if (isValid) {
-        // Save data and proceed
-        updateFormData(values)
-        nextStep()
-      } else {
-        // Touch all fields to show errors
-        Object.keys(values).forEach(field => {
-          handleFieldBlur(field)()
-        })
-      }
-    } catch (error) {
-      console.error('Validation error:', error)
-    } finally {
-      setIsSubmitting(false)
+    if (isValid) {
+      nextStep()
     }
   }
   
-  // Check if form is valid for enabling submit button
-  const isFormValid = !Object.keys(errors).some(key => errors[key]) && 
-    Object.values(values).every(value => value)
-  
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold mb-2">Personal Information</h2>
-        <p className="text-muted-foreground">How can we reach you?</p>
-      </div>
-      
-      <Alert className="border-green-200 bg-green-50">
-        <Info className="h-4 w-4 text-green-600" />
-        <AlertDescription className="text-green-800">
-          <div className="flex items-center justify-between">
-            <span>Your information is secure and will only be used to provide you with a personalized quote.</span>
-            <SecurityIndicator context={securityContexts.contactInfo} variant="minimal" showDetails={false} />
+    <Form {...form}>
+      <div className="space-y-6">
+        <div>
+          <h2 className="text-2xl font-bold mb-2">Personal Information</h2>
+          <p className="text-muted-foreground">How can we reach you?</p>
+        </div>
+        
+        <Alert className="border-green-200 bg-green-50">
+          <Info className="h-4 w-4 text-green-600" />
+          <AlertDescription className="text-green-800">
+            <div className="flex items-center justify-between">
+              <span>Your information is secure and will only be used to provide you with a personalized quote.</span>
+              <SecurityIndicator context={securityContexts.contactInfo} variant="minimal" showDetails={false} />
+            </div>
+          </AlertDescription>
+        </Alert>
+        
+        <div className="space-y-4">
+          {/* Name Fields */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>First Name</FormLabel>
+                  <FormControl>
+                    <VAFormInput
+                      {...field}
+                      placeholder="John"
+                      autoComplete="given-name"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Last Name</FormLabel>
+                  <FormControl>
+                    <VAFormInput
+                      {...field}
+                      placeholder="Doe"
+                      autoComplete="family-name"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
-        </AlertDescription>
-      </Alert>
-      
-      <div className="grid gap-4">
-        <div className="grid sm:grid-cols-2 gap-4">
-          <FormInput
-            label="First Name"
-            required
-            value={values.first_name}
-            onChange={handleFieldChange('first_name')}
-            onBlur={handleFieldBlur('first_name')}
-            error={getFieldError('first_name')}
-            touched={touched.first_name}
-            autoComplete="given-name"
-            placeholder="John"
+          
+          {/* Email */}
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email Address</FormLabel>
+                <FormControl>
+                  <VAFormInput
+                    {...field}
+                    type="email"
+                    placeholder="john.doe@email.com"
+                    autoComplete="email"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
           
-          <FormInput
-            label="Last Name"
-            required
-            value={values.last_name}
-            onChange={handleFieldChange('last_name')}
-            onBlur={handleFieldBlur('last_name')}
-            error={getFieldError('last_name')}
-            touched={touched.last_name}
-            autoComplete="family-name"
-            placeholder="Doe"
+          {/* Phone */}
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Phone Number</FormLabel>
+                <FormControl>
+                  <VAPhoneInput
+                    {...field}
+                    placeholder="(555) 123-4567"
+                    autoComplete="tel"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          {/* Contact Preference */}
+          <FormField
+            control={form.control}
+            name="preferredContactMethod"
+            render={({ field }) => (
+              <FormItem className="space-y-3">
+                <FormLabel>Preferred Contact Method</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    value={field.value}
+                    onValueChange={field.onChange}
+                    className="flex flex-col space-y-2"
+                  >
+                    {CONTACT_PREFERENCES.map((preference) => (
+                      <div key={preference.value} className="flex items-center space-x-3">
+                        <RadioGroupItem 
+                          value={preference.value} 
+                          id={`contact-${preference.value}`}
+                        />
+                        <label 
+                          htmlFor={`contact-${preference.value}`}
+                          className="text-sm font-medium cursor-pointer"
+                        >
+                          {preference.label}
+                        </label>
+                      </div>
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
         </div>
         
-        <FormInput
-          label="Email"
-          type="email"
-          required
-          value={values.email}
-          onChange={handleFieldChange('email')}
-          onBlur={handleFieldBlur('email')}
-          error={getFieldError('email')}
-          touched={touched.email}
-          autoComplete="email"
-          placeholder="john.doe@email.com"
-          helperText="We'll send your quote details to this email"
-        />
-        
-        <PhoneInput
-          label="Phone Number"
-          required
-          value={values.phone}
-          onChange={handleFieldChange('phone')}
-          onBlur={handleFieldBlur('phone')}
-          error={getFieldError('phone')}
-          touched={touched.phone}
-          autoComplete="tel"
-        />
+        <div className="flex justify-between pt-4">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={previousStep}
+            size="lg"
+          >
+            Previous
+          </Button>
+          <Button 
+            type="button"
+            onClick={handleContinue}
+            size="lg"
+            className="min-w-[120px]"
+          >
+            Continue
+          </Button>
+        </div>
       </div>
-      
-      <div className="flex gap-4">
-        <Button variant="outline" onClick={prevStep}>
-          Back
-        </Button>
-        <Button 
-          onClick={handleSubmit} 
-          disabled={isSubmitting || !isFormValid}
-        >
-          {isSubmitting ? 'Validating...' : 'Continue'}
-        </Button>
-      </div>
-    </div>
+    </Form>
   )
 }
